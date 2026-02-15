@@ -1,0 +1,18 @@
+baseURL = "https://rougueroutine.brengel.com"
+languageCode = "en-us"
+title = "Rogue Routine"
+
+[pagination]
+  pagerSize = 20
+
+[params]
+  description = "Sovereign news intelligence, powered by Sieve."
+  author = "Abend"
+
+[outputs]
+  home = ["HTML"]
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true

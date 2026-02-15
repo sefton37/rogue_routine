@@ -1,0 +1,6 @@
+<nav>
+  <a href="/" class="site-name">Rogue Routine</a>
+  <a href="/"{{ if .IsHome }} aria-current="page"{{ end }}>Signal</a>
+  <a href="/reader/"{{ if eq .RelPermalink "/reader/" }} aria-current="page"{{ end }}>Reader</a>
+  <a href="/about/"{{ if eq .RelPermalink "/about/" }} aria-current="page"{{ end }}>About</a>
+</nav>

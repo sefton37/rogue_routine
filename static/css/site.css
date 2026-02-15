@@ -1,0 +1,423 @@
+/* Rogue Routine — Custom Overrides on Pico CSS Classless */
+
+/* === Color Palette === */
+:root {
+  --rr-text: #1a1a1a;
+  --rr-text-muted: #6b6b6b;
+  --rr-accent: #2563eb;
+  --rr-accent-hover: #1d4ed8;
+  --rr-bg: #fafafa;
+  --rr-surface: #ffffff;
+  --rr-border: #e5e5e5;
+  --rr-score-bar: #2563eb;
+  --rr-score-bg: #e5e7eb;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --rr-text: #e5e5e5;
+    --rr-text-muted: #9ca3af;
+    --rr-accent: #60a5fa;
+    --rr-accent-hover: #93bbfd;
+    --rr-bg: #111111;
+    --rr-surface: #1a1a1a;
+    --rr-border: #2a2a2a;
+    --rr-score-bar: #60a5fa;
+    --rr-score-bg: #374151;
+  }
+}
+
+/* === Base === */
+body {
+  background: var(--rr-bg);
+  color: var(--rr-text);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  line-height: 1.6;
+}
+
+main {
+  max-width: 70ch;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+/* === Typography === */
+h1, h2, h3, h4 {
+  line-height: 1.3;
+}
+
+h1 { font-size: 1.5rem; margin-bottom: 1rem; }
+h2 { font-size: 1.25rem; margin-top: 2rem; }
+h3 { font-size: 1.1rem; }
+
+/* === Navigation === */
+nav {
+  max-width: 70ch;
+  margin: 0 auto;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+nav .site-name {
+  font-weight: 700;
+  font-size: 1.1rem;
+  text-decoration: none;
+  color: var(--rr-text);
+  margin-right: auto;
+}
+
+nav a {
+  text-decoration: none;
+  color: var(--rr-text-muted);
+  font-size: 0.9rem;
+}
+
+nav a:hover,
+nav a[aria-current="page"] {
+  color: var(--rr-text);
+}
+
+nav a[aria-current="page"] {
+  border-bottom: 2px solid var(--rr-accent);
+  padding-bottom: 2px;
+}
+
+/* === Footer === */
+footer {
+  max-width: 70ch;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+  border-top: 1px solid var(--rr-border);
+  color: var(--rr-text-muted);
+  font-size: 0.8rem;
+}
+
+/* === Muted Text === */
+.muted {
+  color: var(--rr-text-muted);
+  font-size: 0.85rem;
+}
+
+/* === Digest Cards (Landing Page) === */
+.digest-card {
+  padding: 1.5rem 0;
+  border-bottom: 1px solid var(--rr-border);
+}
+
+.digest-card:first-child {
+  padding-top: 0;
+}
+
+.digest-card a {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.digest-card a:hover h2 {
+  color: var(--rr-accent);
+}
+
+.digest-card .digest-date {
+  font-weight: 700;
+  font-size: 1.1rem;
+  margin-bottom: 0.25rem;
+  color: var(--rr-text);
+}
+
+.digest-card .digest-summary {
+  margin: 0.5rem 0;
+  line-height: 1.6;
+}
+
+.digest-card .digest-meta {
+  color: var(--rr-text-muted);
+  font-size: 0.8rem;
+  margin-top: 0.5rem;
+}
+
+/* === Thread Tags === */
+.thread-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+  margin-top: 0.5rem;
+}
+
+.thread-tag {
+  display: inline-block;
+  font-size: 0.75rem;
+  color: var(--rr-text-muted);
+  border: 1px solid var(--rr-border);
+  border-radius: 3px;
+  padding: 0.1rem 0.4rem;
+}
+
+/* === Pagination === */
+.pagination {
+  display: flex;
+  justify-content: space-between;
+  padding: 2rem 0;
+  font-size: 0.9rem;
+}
+
+.pagination a {
+  color: var(--rr-accent);
+}
+
+/* === Single Digest === */
+.digest-nav {
+  display: flex;
+  justify-content: space-between;
+  padding: 1.5rem 0;
+  border-top: 1px solid var(--rr-border);
+  font-size: 0.85rem;
+  margin-top: 2rem;
+}
+
+.digest-nav a {
+  color: var(--rr-accent);
+}
+
+.digest-header {
+  margin-bottom: 2rem;
+}
+
+.digest-header .digest-date {
+  font-weight: 700;
+  color: var(--rr-text-muted);
+  font-size: 0.9rem;
+}
+
+.digest-content h2 {
+  margin-top: 2rem;
+}
+
+.digest-footer {
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--rr-border);
+  color: var(--rr-text-muted);
+  font-size: 0.8rem;
+}
+
+/* === Reader === */
+.reader-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+  align-items: flex-end;
+}
+
+.reader-controls label {
+  font-size: 0.8rem;
+  color: var(--rr-text-muted);
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.reader-controls select,
+.reader-controls input {
+  font-size: 0.85rem;
+  padding: 0.3rem 0.5rem;
+  border: 1px solid var(--rr-border);
+  border-radius: 3px;
+  background: var(--rr-surface);
+  color: var(--rr-text);
+}
+
+.reader-sort {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  font-size: 0.8rem;
+}
+
+.reader-sort button {
+  background: none;
+  border: 1px solid var(--rr-border);
+  border-radius: 3px;
+  padding: 0.2rem 0.6rem;
+  color: var(--rr-text-muted);
+  cursor: pointer;
+  font-size: 0.8rem;
+}
+
+.reader-sort button.active {
+  color: var(--rr-text);
+  border-color: var(--rr-accent);
+}
+
+.article-list {
+  list-style: none;
+  padding: 0;
+}
+
+.article-item {
+  padding: 0.75rem 0;
+  border-bottom: 1px solid var(--rr-border);
+}
+
+.article-item .article-title {
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.article-item .article-title a {
+  color: var(--rr-text);
+  text-decoration: none;
+}
+
+.article-item .article-title a:hover {
+  color: var(--rr-accent);
+}
+
+.article-item .article-meta {
+  font-size: 0.8rem;
+  color: var(--rr-text-muted);
+  margin-top: 0.25rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.article-score {
+  display: inline-flex;
+  align-items: center;
+  font-weight: 700;
+  font-size: 0.85rem;
+  color: var(--rr-accent);
+  min-width: 2ch;
+}
+
+.axiom-bars {
+  display: inline-flex;
+  gap: 2px;
+  align-items: flex-end;
+  height: 16px;
+}
+
+.axiom-bar {
+  width: 4px;
+  background: var(--rr-score-bar);
+  border-radius: 1px;
+  min-height: 2px;
+}
+
+.article-detail {
+  padding: 0.75rem 0 0.75rem 1rem;
+  border-left: 2px solid var(--rr-border);
+  margin-top: 0.5rem;
+  font-size: 0.85rem;
+  display: none;
+}
+
+.article-detail.open {
+  display: block;
+}
+
+.article-detail .axiom-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.15rem 0;
+}
+
+.article-detail .axiom-label {
+  color: var(--rr-text-muted);
+}
+
+.article-detail .axiom-value {
+  font-weight: 600;
+}
+
+.reader-status {
+  font-size: 0.8rem;
+  color: var(--rr-text-muted);
+  margin-bottom: 0.5rem;
+}
+
+.reader-pagination {
+  display: flex;
+  justify-content: center;
+  gap: 0.25rem;
+  padding: 1.5rem 0;
+  flex-wrap: wrap;
+}
+
+.reader-pagination button {
+  background: none;
+  border: 1px solid var(--rr-border);
+  border-radius: 3px;
+  padding: 0.25rem 0.5rem;
+  cursor: pointer;
+  font-size: 0.8rem;
+  color: var(--rr-text-muted);
+}
+
+.reader-pagination button.active {
+  background: var(--rr-accent);
+  color: #fff;
+  border-color: var(--rr-accent);
+}
+
+.reader-pagination button:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+/* === About Page === */
+.about-part-one {
+  font-family: "SF Mono", "Fira Code", "Fira Mono", "Roboto Mono", monospace;
+  font-size: 0.9rem;
+  line-height: 1.7;
+  padding-bottom: 2rem;
+  border-bottom: 2px solid var(--rr-border);
+  margin-bottom: 2rem;
+}
+
+.about-part-one p {
+  margin-bottom: 1rem;
+}
+
+.about-part-two {
+  font-size: 0.95rem;
+}
+
+.about-part-two table {
+  font-size: 0.85rem;
+}
+
+/* === 404 === */
+.four-oh-four {
+  padding: 4rem 0;
+  text-align: center;
+}
+
+.four-oh-four h1 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.four-oh-four p {
+  color: var(--rr-text-muted);
+}
+
+/* === Responsive === */
+@media (max-width: 600px) {
+  nav {
+    gap: 1rem;
+  }
+
+  .reader-controls {
+    flex-direction: column;
+  }
+
+  .reader-controls label {
+    width: 100%;
+  }
+}

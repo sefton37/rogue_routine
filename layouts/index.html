@@ -1,0 +1,21 @@
+{{ define "main" }}
+{{ $digests := where .Site.RegularPages "Section" "digests" }}
+{{ $paginator := .Paginate $digests }}
+{{ range $paginator.Pages }}
+  {{ partial "digest-card.html" . }}
+{{ end }}
+{{ if gt $paginator.TotalPages 1 }}
+<div class="pagination">
+  {{ if $paginator.HasPrev }}
+    <a href="{{ $paginator.Prev.URL }}">← Newer</a>
+  {{ else }}
+    <span></span>
+  {{ end }}
+  {{ if $paginator.HasNext }}
+    <a href="{{ $paginator.Next.URL }}">Older →</a>
+  {{ else }}
+    <span></span>
+  {{ end }}
+</div>
+{{ end }}
+{{ end }}

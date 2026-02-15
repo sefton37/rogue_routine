@@ -1,0 +1,41 @@
+{{ define "main" }}
+<h1>Reader</h1>
+<p class="muted">Browse all articles scored by Sieve. Filter, sort, and explore.</p>
+
+<div class="reader-controls" id="reader-controls">
+  <label>
+    Source
+    <select id="filter-source"><option value="">All sources</option></select>
+  </label>
+  <label>
+    Thread
+    <select id="filter-thread"><option value="">All threads</option></select>
+  </label>
+  <label>
+    Search
+    <input type="search" id="filter-search" placeholder="Search titles...">
+  </label>
+</div>
+
+<div class="reader-sort" id="reader-sort">
+  <span class="muted">Sort:</span>
+  <button data-sort="score" class="active">Score ↓</button>
+  <button data-sort="date">Date</button>
+</div>
+
+<div class="reader-status" id="reader-status"></div>
+
+<ul class="article-list" id="article-list">
+  <li class="muted">Loading articles...</li>
+</ul>
+
+<div class="reader-pagination" id="reader-pagination"></div>
+
+<noscript>
+  <p>The Reader requires JavaScript to filter and sort {{ with .Site.Data.articles }}{{ .total_articles }}{{ end }} articles.</p>
+</noscript>
+{{ end }}
+
+{{ define "scripts" }}
+<script src="/js/reader.js"></script>
+{{ end }}

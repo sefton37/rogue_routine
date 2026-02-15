@@ -1,0 +1,47 @@
+{{ define "main" }}
+<article>
+  <header class="digest-header">
+    <div class="digest-date">{{ .Date.Format "January 2, 2006" }}</div>
+    <h1>{{ .Title }}</h1>
+    {{ with .Params.top_threads }}
+    <div class="thread-tags">
+      {{ range . }}<span class="thread-tag">{{ . }}</span>{{ end }}
+    </div>
+    {{ end }}
+  </header>
+
+  <div class="digest-content">
+    {{ .Content }}
+  </div>
+
+  <div class="digest-footer">
+    <p>
+      {{ with .Params.article_count }}{{ . }} articles analyzed{{ end }}{{ with .Params.source_count }} across {{ . }} sources{{ end }}.
+    </p>
+    {{ with .Params.top_scoring_articles }}
+    <details>
+      <summary>Top scoring articles</summary>
+      <ul>
+        {{ range . }}
+        <li><a href="{{ .url }}" rel="noopener">{{ .title }}</a> ({{ .source }}, score: {{ .score }})</li>
+        {{ end }}
+      </ul>
+    </details>
+    {{ end }}
+  </div>
+
+  <nav class="digest-nav">
+    {{ with .PrevInSection }}
+      <a href="{{ .Permalink }}">← {{ .Date.Format "Jan 2" }}</a>
+    {{ else }}
+      <span></span>
+    {{ end }}
+    <a href="/">Signal</a>
+    {{ with .NextInSection }}
+      <a href="{{ .Permalink }}">{{ .Date.Format "Jan 2" }} →</a>
+    {{ else }}
+      <span></span>
+    {{ end }}
+  </nav>
+</article>
+{{ end }}

@@ -1,0 +1,14 @@
+<article class="digest-card">
+  <a href="{{ .Permalink }}">
+    <div class="digest-date">{{ .Date.Format "January 2, 2006" }}</div>
+    {{ with .Params.summary }}<p class="digest-summary">{{ . }}</p>{{ end }}
+    <div class="digest-meta">
+      {{ with .Params.article_count }}{{ . }} articles{{ end }}{{ with .Params.source_count }} · {{ . }} sources{{ end }}
+    </div>
+    {{ with .Params.top_threads }}
+    <div class="thread-tags">
+      {{ range . }}<span class="thread-tag">{{ . }}</span>{{ end }}
+    </div>
+    {{ end }}
+  </a>
+</article>
