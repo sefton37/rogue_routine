@@ -3,11 +3,6 @@
   <header class="digest-header">
     <div class="digest-date">{{ .Date.Format "January 2, 2006" }}</div>
     <h1>{{ .Title }}</h1>
-    {{ with .Params.top_threads }}
-    <div class="thread-tags">
-      {{ range . }}<span class="thread-tag">{{ . }}</span>{{ end }}
-    </div>
-    {{ end }}
   </header>
 
   <div class="digest-content">

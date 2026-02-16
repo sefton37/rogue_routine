@@ -100,14 +100,48 @@ footer {
   font-size: 0.85rem;
 }
 
-/* === Digest Cards (Landing Page) === */
-.digest-card {
-  padding: 1.5rem 0;
-  border-bottom: 1px solid var(--rr-border);
+/* === Hero (Landing Page) === */
+.hero {
+  position: relative;
+  margin: -1rem -1rem 2rem -1rem;
+  overflow: hidden;
+  border-radius: 4px;
 }
 
-.digest-card:first-child {
-  padding-top: 0;
+.hero-img {
+  width: 100%;
+  height: 240px;
+  object-fit: cover;
+  display: block;
+}
+
+.hero-title {
+  position: absolute;
+  bottom: 3rem;
+  left: 1.5rem;
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #fff;
+  text-shadow: 0 2px 12px rgba(0,0,0,0.6);
+  margin: 0;
+  letter-spacing: -0.02em;
+}
+
+.hero-subtitle {
+  position: absolute;
+  bottom: 1rem;
+  left: 1.5rem;
+  font-size: 0.95rem;
+  color: rgba(255,255,255,0.85);
+  text-shadow: 0 1px 6px rgba(0,0,0,0.5);
+  margin: 0;
+}
+
+/* === Digest Cards (Landing Page) === */
+.digest-card {
+  padding: 1.25rem 1rem;
+  margin: 0 -1rem;
+  border-bottom: 1px solid var(--rr-border);
 }
 
 .digest-card a {
@@ -116,26 +150,26 @@ footer {
   display: block;
 }
 
-.digest-card a:hover h2 {
+.digest-card a:hover .digest-date {
   color: var(--rr-accent);
 }
 
 .digest-card .digest-date {
   font-weight: 700;
-  font-size: 1.1rem;
-  margin-bottom: 0.25rem;
+  font-size: 1.05rem;
+  margin-bottom: 0.35rem;
   color: var(--rr-text);
 }
 
 .digest-card .digest-summary {
-  margin: 0.5rem 0;
+  margin: 0.4rem 0 0.5rem 0;
   line-height: 1.6;
+  color: var(--rr-text);
 }
 
 .digest-card .digest-meta {
   color: var(--rr-text-muted);
   font-size: 0.8rem;
-  margin-top: 0.5rem;
 }
 
 /* === Thread Tags === */
@@ -411,6 +445,22 @@ footer {
 @media (max-width: 600px) {
   nav {
     gap: 1rem;
+  }
+
+  .hero-img {
+    height: 180px;
+  }
+
+  .hero-title {
+    font-size: 1.75rem;
+    bottom: 2.5rem;
+    left: 1rem;
+  }
+
+  .hero-subtitle {
+    left: 1rem;
+    bottom: 0.75rem;
+    font-size: 0.85rem;
   }
 
   .reader-controls {
