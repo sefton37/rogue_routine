@@ -18,10 +18,36 @@
 </div>
 
 <div class="reader-sort" id="reader-sort">
-  <span class="muted">Sort:</span>
-  <button data-sort="score">Score</button>
-  <button data-sort="date" class="active">Date ↓</button>
+  <label class="sort-label">
+    Sort by
+    <select id="sort-field">
+      <option value="date">Date</option>
+      <option value="score">Overall Score</option>
+      <option value="attention_economy">Attention Economy</option>
+      <option value="data_sovereignty">Data Sovereignty</option>
+      <option value="power_consolidation">Power Consolidation</option>
+      <option value="coercion_cooperation">Coercion vs. Cooperation</option>
+      <option value="fear_trust">Fear vs. Trust</option>
+      <option value="democratization">Democratization</option>
+      <option value="systemic_design">Systemic Design</option>
+    </select>
+  </label>
+  <button id="sort-dir" class="sort-dir-btn">↓ Newest</button>
 </div>
+
+<details class="axiom-filter-wrap" id="axiom-filter">
+  <summary class="muted">Filter by axiom</summary>
+  <div class="axiom-checkboxes">
+    <label><input type="checkbox" value="attention_economy"> Attention Economy</label>
+    <label><input type="checkbox" value="data_sovereignty"> Data Sovereignty</label>
+    <label><input type="checkbox" value="power_consolidation"> Power Consolidation</label>
+    <label><input type="checkbox" value="coercion_cooperation"> Coercion vs. Cooperation</label>
+    <label><input type="checkbox" value="fear_trust"> Fear vs. Trust</label>
+    <label><input type="checkbox" value="democratization"> Democratization</label>
+    <label><input type="checkbox" value="systemic_design"> Systemic Design</label>
+  </div>
+  <p class="muted axiom-filter-hint">Articles must score &gt; 0 on all selected axioms.</p>
+</details>
 
 <div class="reader-status" id="reader-status"></div>
 

@@ -7,6 +7,10 @@
   var currentPage = 1;
   var sortField = "date";
   var sortDir = -1; // -1 = descending
+  var selectedAxioms = [];
+
+  var axiomKeys = ["attention_economy", "data_sovereignty", "power_consolidation",
+    "coercion_cooperation", "fear_trust", "democratization", "systemic_design"];
 
   var elList = document.getElementById("article-list");
   var elStatus = document.getElementById("reader-status");
@@ -14,7 +18,9 @@
   var elSource = document.getElementById("filter-source");
   var elTopic = document.getElementById("filter-topic");
   var elSearch = document.getElementById("filter-search");
-  var elSortBtns = document.querySelectorAll("#reader-sort button");
+  var elSortSelect = document.getElementById("sort-field");
+  var elSortDir = document.getElementById("sort-dir");
+  var elAxiomFilter = document.getElementById("axiom-filter");
 
   var axiomLabels = {
     attention_economy: "Attention Economy",
@@ -65,9 +71,13 @@
     elSource.addEventListener("change", onFilter);
     elTopic.addEventListener("change", onFilter);
     elSearch.addEventListener("input", debounce(onFilter, 200));
+    elSortSelect.addEventListener("change", onSortChange);
+    elSortDir.addEventListener("click", onSortDirToggle);
 
-    for (var i = 0; i < elSortBtns.length; i++) {
-      elSortBtns[i].addEventListener("click", onSort);
+    // Axiom filter checkboxes
+    var checks = elAxiomFilter.querySelectorAll("input[type=checkbox]");
+    for (var i = 0; i < checks.length; i++) {
+      checks[i].addEventListener("change", onAxiomFilterChange);
     }
   }
 
@@ -112,24 +122,36 @@
     pushURL();
   }
 
-  function onSort(e) {
-    var btn = e.currentTarget;
-    var field = btn.getAttribute("data-sort");
+  function onSortChange() {
+    sortField = elSortSelect.value;
+    sortDir = -1;
+    updateSortDirBtn();
+    currentPage = 1;
+    applyFilters();
+    pushURL();
+  }
 
-    if (field === sortField) {
-      sortDir *= -1;
-    } else {
-      sortField = field;
-      sortDir = -1;
+  function onSortDirToggle() {
+    sortDir *= -1;
+    updateSortDirBtn();
+    currentPage = 1;
+    applyFilters();
+    pushURL();
+  }
+
+  function updateSortDirBtn() {
+    elSortDir.textContent = sortDir === -1 ? "↓ High to Low" : "↑ Low to High";
+    if (sortField === "date") {
+      elSortDir.textContent = sortDir === -1 ? "↓ Newest" : "↑ Oldest";
     }
+  }
 
-    for (var i = 0; i < elSortBtns.length; i++) {
-      elSortBtns[i].classList.remove("active");
-      elSortBtns[i].textContent = elSortBtns[i].getAttribute("data-sort") === "score" ? "Score" : "Date";
+  function onAxiomFilterChange() {
+    selectedAxioms = [];
+    var checks = elAxiomFilter.querySelectorAll("input[type=checkbox]:checked");
+    for (var i = 0; i < checks.length; i++) {
+      selectedAxioms.push(checks[i].value);
     }
-    btn.classList.add("active");
-    btn.textContent = (field === "score" ? "Score" : "Date") + (sortDir === -1 ? " ↓" : " ↑");
-
     currentPage = 1;
     applyFilters();
     pushURL();
@@ -144,6 +166,14 @@
       if (src && a.source !== src) return false;
       if (topic && (!a.topics || a.topics.indexOf(topic) === -1)) return false;
       if (search && a.title.toLowerCase().indexOf(search) === -1) return false;
+      // Axiom filter: article must score > 0 on all selected axioms
+      if (selectedAxioms.length > 0 && a.axiom_scores) {
+        for (var i = 0; i < selectedAxioms.length; i++) {
+          if (!a.axiom_scores[selectedAxioms[i]] || a.axiom_scores[selectedAxioms[i]] <= 0) {
+            return false;
+          }
+        }
+      }
       return true;
     });
 
@@ -152,9 +182,13 @@
       if (sortField === "score") {
         va = a.overall_score || 0;
         vb = b.overall_score || 0;
-      } else {
+      } else if (sortField === "date") {
         va = a.published || "";
         vb = b.published || "";
+      } else {
+        // Sorting by an individual axiom
+        va = (a.axiom_scores && a.axiom_scores[sortField]) || 0;
+        vb = (b.axiom_scores && b.axiom_scores[sortField]) || 0;
       }
       if (va < vb) return sortDir;
       if (va > vb) return -sortDir;
@@ -209,14 +243,12 @@
   function renderArticle(a) {
     var bars = "";
     if (a.axiom_scores) {
-      var keys = ["attention_economy", "data_sovereignty", "power_consolidation",
-        "coercion_cooperation", "fear_trust", "democratization", "systemic_design"];
       bars = '<span class="axiom-bars">';
-      for (var i = 0; i < keys.length; i++) {
-        var v = a.axiom_scores[keys[i]] || 0;
+      for (var i = 0; i < axiomKeys.length; i++) {
+        var v = a.axiom_scores[axiomKeys[i]] || 0;
         var h = Math.max(2, (v / 3) * 16);
         bars += '<span class="axiom-bar" style="height:' + h + 'px" title="' +
-          axiomLabels[keys[i]] + ': ' + v + '/3"></span>';
+          axiomLabels[axiomKeys[i]] + ': ' + v + '/3"></span>';
       }
       bars += "</span>";
     }
@@ -237,25 +269,21 @@
 
     var detail = '<div class="article-detail">';
     if (a.axiom_scores) {
-      var keys = ["attention_economy", "data_sovereignty", "power_consolidation",
-        "coercion_cooperation", "fear_trust", "democratization", "systemic_design"];
-      for (var i = 0; i < keys.length; i++) {
-        var v = a.axiom_scores[keys[i]] || 0;
+      for (var i = 0; i < axiomKeys.length; i++) {
+        var v = a.axiom_scores[axiomKeys[i]] || 0;
         detail += '<div class="axiom-row"><span class="axiom-label">' +
-          axiomLabels[keys[i]] + '</span><span class="axiom-value">' + v + '/3</span></div>';
+          axiomLabels[axiomKeys[i]] + '</span><span class="axiom-value">' + v + '/3</span></div>';
       }
     }
     detail += "</div>";
 
     var tooltip = "";
     if (a.axiom_scores) {
-      var keys = ["attention_economy", "data_sovereignty", "power_consolidation",
-        "coercion_cooperation", "fear_trust", "democratization", "systemic_design"];
       tooltip = '<div class="score-tooltip">';
-      for (var i = 0; i < keys.length; i++) {
-        var v = a.axiom_scores[keys[i]] || 0;
+      for (var i = 0; i < axiomKeys.length; i++) {
+        var v = a.axiom_scores[axiomKeys[i]] || 0;
         tooltip += '<div class="score-tooltip-row"><span>' +
-          axiomLabels[keys[i]] + '</span><span class="score-tooltip-val">' + v + '/3</span></div>';
+          axiomLabels[axiomKeys[i]] + '</span><span class="score-tooltip-val">' + v + '/3</span></div>';
       }
       tooltip += '</div>';
     }
@@ -333,6 +361,7 @@
     if (sortField !== "date") params.set("sort", sortField);
     if (sortDir !== -1) params.set("dir", "asc");
     if (currentPage > 1) params.set("page", currentPage);
+    if (selectedAxioms.length > 0) params.set("axioms", selectedAxioms.join(","));
     var qs = params.toString();
     history.replaceState(null, "", qs ? "?" + qs : window.location.pathname);
   }
@@ -346,15 +375,18 @@
     if (params.get("dir") === "asc") sortDir = 1;
     if (params.get("page")) currentPage = parseInt(params.get("page")) || 1;
 
-    // Update sort button UI
-    for (var i = 0; i < elSortBtns.length; i++) {
-      var btn = elSortBtns[i];
-      var field = btn.getAttribute("data-sort");
-      btn.classList.toggle("active", field === sortField);
-      if (field === sortField) {
-        btn.textContent = (field === "score" ? "Score" : "Date") + (sortDir === -1 ? " ↓" : " ↑");
+    // Restore axiom filter from URL
+    if (params.get("axioms")) {
+      selectedAxioms = params.get("axioms").split(",");
+      var checks = elAxiomFilter.querySelectorAll("input[type=checkbox]");
+      for (var i = 0; i < checks.length; i++) {
+        checks[i].checked = selectedAxioms.indexOf(checks[i].value) !== -1;
       }
     }
+
+    // Update sort UI
+    elSortSelect.value = sortField;
+    updateSortDirBtn();
   }
 
   function escapeHtml(s) {
