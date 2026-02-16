@@ -247,11 +247,27 @@
     }
     detail += "</div>";
 
+    var tooltip = "";
+    if (a.axiom_scores) {
+      var keys = ["attention_economy", "data_sovereignty", "power_consolidation",
+        "coercion_cooperation", "fear_trust", "democratization", "systemic_design"];
+      tooltip = '<div class="score-tooltip">';
+      for (var i = 0; i < keys.length; i++) {
+        var v = a.axiom_scores[keys[i]] || 0;
+        tooltip += '<div class="score-tooltip-row"><span>' +
+          axiomLabels[keys[i]] + '</span><span class="score-tooltip-val">' + v + '/3</span></div>';
+      }
+      tooltip += '</div>';
+    }
+
     return '<li class="article-item">' +
       '<div class="article-title"><a href="#">' + escapeHtml(a.title) + "</a></div>" +
       '<div class="article-meta">' +
+      '<span class="article-score-wrap">' +
       '<span class="article-score">Score: ' + (a.overall_score || 0) + "</span>" +
       bars +
+      tooltip +
+      '</span>' +
       '<a class="article-source" href="' + escapeHtml(a.url) +
         '" rel="noopener" target="_blank">' + escapeHtml(a.source || "") + "</a>" +
       "<span>" + (a.published || "") + "</span>" +

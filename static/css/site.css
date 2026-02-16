@@ -481,12 +481,53 @@ footer .footer-nav {
   text-decoration: underline;
 }
 
+.article-score-wrap {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  cursor: default;
+}
+
 .article-score {
   display: inline-flex;
   align-items: center;
   font-weight: 700;
   font-size: 0.8rem;
   color: var(--rr-accent);
+}
+
+.score-tooltip {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  margin-top: 0.4rem;
+  background: var(--rr-surface);
+  border: 1px solid var(--rr-border);
+  border-radius: 4px;
+  padding: 0.5rem 0.75rem;
+  min-width: 14rem;
+  z-index: 10;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+  font-size: 0.8rem;
+}
+
+.article-score-wrap:hover .score-tooltip {
+  display: block;
+}
+
+.score-tooltip-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.15rem 0;
+  color: var(--rr-text-muted);
+}
+
+.score-tooltip-val {
+  font-weight: 600;
+  color: var(--rr-text);
+  margin-left: 1rem;
 }
 
 .axiom-bars {
