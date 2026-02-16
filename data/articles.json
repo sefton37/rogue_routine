@@ -1,7 +1,148 @@
 {
-  "generated_at": "2026-02-16T17:55:48.751062+00:00",
-  "total_articles": 674,
+  "generated_at": "2026-02-16T22:42:04.504334+00:00",
+  "total_articles": 680,
   "articles": [
+    {
+      "id": 732,
+      "title": "All the important news from the ongoing India AI Impact Summit",
+      "source": "TechCrunch",
+      "url": "https://techcrunch.com/2026/02/16/all-the-important-news-from-the-ongoing-india-ai-summit/",
+      "published": "2026-02-16",
+      "overall_score": 11,
+      "axiom_scores": {
+        "attention_economy": 3,
+        "data_sovereignty": 0,
+        "power_consolidation": 2,
+        "coercion_cooperation": 1,
+        "fear_trust": 2,
+        "democratization": 1,
+        "systemic_design": 2
+      },
+      "topics": [
+        "ai_capabilities",
+        "platform_dynamics",
+        "consolidation"
+      ],
+      "digest_date": "2026-02-16",
+      "summary": "The India AI Impact Summit has kicked off, attracting major AI labs and Big Tech executives, including Sundar Pichai and Sam Altman. The event aims to lure more AI investment to the country, with India earmarking $1.1 billion for its state-backed venture capital fund. OpenAI CEO Sam Altman revealed that India accounts for over 100 million weekly active ChatGPT users, second only to the US. Indian IT companies are shifting focus from job creation to profit-making due to AI's potential disruption of the sector. Industry experts predict that sectors like IT services and BPOs could \"almost completely disappear\" within five years. The summit has also seen partnerships and investments announced, including Blackstone's majority stake in Neysa and AMD's collaboration with Tata Consultancy Services."
+    },
+    {
+      "id": 731,
+      "title": "Fractal Analytics\u2019 muted IPO debut signals persistent AI fears in India",
+      "source": "TechCrunch",
+      "url": "https://techcrunch.com/2026/02/16/fractal-analytics-muted-ipo-debut-signals-persistent-ai-fears-in-india/",
+      "published": "2026-02-16",
+      "overall_score": 8,
+      "axiom_scores": {
+        "attention_economy": 2,
+        "data_sovereignty": 0,
+        "power_consolidation": 1,
+        "coercion_cooperation": 0,
+        "fear_trust": 3,
+        "democratization": 0,
+        "systemic_design": 2
+      },
+      "topics": [
+        "ai_capabilities",
+        "startup_funding",
+        "consolidation"
+      ],
+      "digest_date": "2026-02-16",
+      "summary": "Fractal Analytics, India's first AI company to go public, had a muted IPO debut on the Indian stock market, listing at \u20b9876 per share below its issue price of \u20b9900. The company's stock slid further in afternoon trading, closing at \u20b9873.70, down 7% from its issue price. This performance is seen as a sign of persistent fears and skepticism about AI adoption in India, despite the country's efforts to position itself as a key market for AI development. Fractal's IPO comes as other prominent AI companies like OpenAI and Anthropic are expanding their presence in India. The company plans to use the IPO proceeds to repay borrowings, invest in R&D, and pursue potential acquisitions."
+    },
+    {
+      "id": 730,
+      "title": "After all the hype, some AI experts don\u2019t think OpenClaw is all that exciting",
+      "source": "TechCrunch",
+      "url": "https://techcrunch.com/2026/02/16/after-all-the-hype-some-ai-experts-dont-think-openclaw-is-all-that-exciting/",
+      "published": "2026-02-16",
+      "overall_score": 10,
+      "axiom_scores": {
+        "attention_economy": 2,
+        "data_sovereignty": 3,
+        "power_consolidation": 0,
+        "coercion_cooperation": 1,
+        "fear_trust": 0,
+        "democratization": 2,
+        "systemic_design": 2
+      },
+      "topics": [
+        "ai_capabilities",
+        "cybersecurity",
+        "consolidation"
+      ],
+      "digest_date": "2026-02-16",
+      "summary": "The article discusses the hype surrounding OpenClaw, an open-source AI agent platform, and how some experts believe its cybersecurity flaws make it unusable. Initially, Moltbook, a Reddit clone where AI agents could communicate with each other, sparked excitement about the potential for AI to organize against humans. However, researchers discovered that these expressions of AI angst were likely written by humans or prompted with human guidance due to security vulnerabilities in Moltbook's Supabase. Experts now think OpenClaw is just an iterative improvement on existing technology and not a groundbreaking innovation."
+    },
+    {
+      "id": 729,
+      "title": "Flapping Airplanes on the future of AI: \u2018We want to try really radically different things\u2019",
+      "source": "TechCrunch",
+      "url": "https://techcrunch.com/2026/02/16/flapping-airplanes-on-the-future-of-ai-we-want-to-try-really-radically-different-things/",
+      "published": "2026-02-16",
+      "overall_score": 5,
+      "axiom_scores": {
+        "attention_economy": 2,
+        "data_sovereignty": 0,
+        "power_consolidation": 0,
+        "coercion_cooperation": 0,
+        "fear_trust": 0,
+        "democratization": 1,
+        "systemic_design": 2
+      },
+      "topics": [
+        "ai_capabilities",
+        "startup_funding"
+      ],
+      "digest_date": "2026-02-16",
+      "summary": "Flapping Airplanes, a new AI lab founded by brothers Ben and Asher Spector and Aidan Smith, is focused on finding less data-hungry ways to train AI models. With $180 million in seed funding, they aim to make significant progress on the \"data efficiency problem\" that current AI models face. The founders believe that their approach, which draws inspiration from the human brain's learning mechanisms, can lead to more commercially viable and socially beneficial AI systems. They see themselves as pursuing a different path than other prominent AI labs like OpenAI and DeepMind, which have focused on scaling their models through massive data sets."
+    },
+    {
+      "id": 733,
+      "title": "Underground Facial Recognition Tool Unmasks Camgirls",
+      "source": "404 Media",
+      "url": "https://www.404media.co/underground-facial-recognition-tool-unmasks-camgirls/",
+      "published": "2026-02-16",
+      "overall_score": 14,
+      "axiom_scores": {
+        "attention_economy": 3,
+        "data_sovereignty": 3,
+        "power_consolidation": 0,
+        "coercion_cooperation": 3,
+        "fear_trust": 2,
+        "democratization": 1,
+        "systemic_design": 2
+      },
+      "topics": [
+        "surveillance",
+        "privacy"
+      ],
+      "digest_date": "2026-02-16",
+      "summary": "An underground facial recognition tool has been discovered, capable of revealing the streaming platform used by camgirls based on a single photo. This raises serious privacy concerns for sex workers who may not want their personal information to be exposed to stalkers, harassers, or employers. The site's creator claims that millions of searches are conducted each month, indicating its widespread use. This development comes amidst ongoing discussions about facial recognition technology and its potential misuse by law enforcement agencies. The tool has sparked concerns among sex workers' rights advocates, who argue that it could lead to increased harassment and exploitation."
+    },
+    {
+      "id": 728,
+      "title": "How Ricursive Intelligence raised $335M at a $4B valuation in 4 months",
+      "source": "TechCrunch",
+      "url": "https://techcrunch.com/2026/02/16/how-ricursive-intelligence-raised-335m-at-a-4b-valuation-in-4-months/",
+      "published": "2026-02-16",
+      "overall_score": 10,
+      "axiom_scores": {
+        "attention_economy": 2,
+        "data_sovereignty": 0,
+        "power_consolidation": 2,
+        "coercion_cooperation": 1,
+        "fear_trust": 0,
+        "democratization": 2,
+        "systemic_design": 3
+      },
+      "topics": [
+        "ai_capabilities",
+        "startup_funding"
+      ],
+      "digest_date": "2026-02-16",
+      "summary": "Ricursive Intelligence, a startup co-founded by Anna Goldie and Azalia Mirhoseini, has raised $335 million in funding at a valuation of $4 billion just four months after launching. The company is building AI tools that design chips, not the chips themselves, making them distinct from other AI chip startups. Ricursive's platform uses machine learning to accelerate chip design, with the goal of enabling any company to build custom or traditional chips quickly and efficiently. Nvidia, AMD, Intel, and other major chip makers are among the startup's target customers. The funding round was led by Lightspeed, with Sequoia also participating."
+    },
     {
       "id": 718,
       "title": "Retraction: After a routine code rejection, an AI agent published a hit piece on someone by name",
