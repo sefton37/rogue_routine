@@ -40,7 +40,7 @@ Sieve is a local-first news intelligence engine. It runs on my hardware, process
 
 The pipeline:
 
-1. **Ingestion** — Sieve pulls from 300+ RSS feeds spanning news, technology, policy, finance, and independent journalism. Breadth of perspective matters more than editorial alignment.
+1. **Ingestion** — Sieve currently pulls from ~10 RSS feeds focused on technology and independent journalism, with ambitions to expand into policy, finance, and world affairs. Breadth of perspective matters more than editorial alignment.
 
 2. **Extraction** — Articles are summarized, entities are extracted, topics are classified. All processing happens locally.
 
