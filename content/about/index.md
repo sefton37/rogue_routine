@@ -77,5 +77,7 @@ Each dimension scores 0–3. Tech optimism without structural analysis scores lo
 
 - [Rogue Routine on Substack](https://rogueroutine.substack.com) — Abend's longer essays
 - [Talking Rock](https://talkingrock.brengel.com) — Kel's other project
+- [kellogg.brengel.com](https://kellogg.brengel.com) — Kel's portfolio
+- [kellogg@brengel.com](mailto:kellogg@brengel.com) — Get in touch
 
 </div>
