@@ -5,14 +5,14 @@
   var articles = [];
   var filtered = [];
   var currentPage = 1;
-  var sortField = "score";
+  var sortField = "date";
   var sortDir = -1; // -1 = descending
 
   var elList = document.getElementById("article-list");
   var elStatus = document.getElementById("reader-status");
   var elPagination = document.getElementById("reader-pagination");
   var elSource = document.getElementById("filter-source");
-  var elThread = document.getElementById("filter-thread");
+  var elTopic = document.getElementById("filter-topic");
   var elSearch = document.getElementById("filter-search");
   var elSortBtns = document.querySelectorAll("#reader-sort button");
 
@@ -25,6 +25,29 @@
     democratization: "Democratization",
     systemic_design: "Systemic Design"
   };
+
+  var topicLabels = {
+    platform_dynamics: "Platform Dynamics",
+    ai_capabilities: "AI Capabilities",
+    consolidation: "Consolidation",
+    content_moderation: "Content Moderation",
+    surveillance: "Surveillance",
+    startup_funding: "Startup Funding",
+    labor_displacement: "Labor Displacement",
+    privacy: "Privacy",
+    hardware: "Hardware",
+    cybersecurity: "Cybersecurity",
+    other: "Other",
+    infrastructure: "Infrastructure",
+    crypto: "Crypto",
+    ai_regulation: "AI Regulation",
+    open_source: "Open Source",
+    acquisitions: "Acquisitions"
+  };
+
+  function formatTopicLabel(topic) {
+    return topicLabels[topic] || topic.replace(/_/g, " ").replace(/\b\w/g, function (c) { return c.toUpperCase(); });
+  }
 
   function init() {
     fetch("/data/articles.json")
@@ -40,7 +63,7 @@
       });
 
     elSource.addEventListener("change", onFilter);
-    elThread.addEventListener("change", onFilter);
+    elTopic.addEventListener("change", onFilter);
     elSearch.addEventListener("input", debounce(onFilter, 200));
 
     for (var i = 0; i < elSortBtns.length; i++) {
@@ -50,13 +73,13 @@
 
   function populateFilters() {
     var sources = {};
-    var threads = {};
+    var topics = {};
     for (var i = 0; i < articles.length; i++) {
       var a = articles[i];
       if (a.source) sources[a.source] = true;
-      if (a.threads) {
-        for (var j = 0; j < a.threads.length; j++) {
-          threads[a.threads[j]] = true;
+      if (a.topics) {
+        for (var j = 0; j < a.topics.length; j++) {
+          topics[a.topics[j]] = true;
         }
       }
     }
@@ -69,16 +92,16 @@
       elSource.appendChild(opt);
     }
 
-    var sortedThreads = Object.keys(threads).sort();
-    var threadLabel = document.getElementById("thread-filter-label");
-    if (sortedThreads.length <= 1 && threadLabel) {
-      threadLabel.classList.add("hidden");
+    var sortedTopics = Object.keys(topics).sort();
+    var topicLabel = document.getElementById("topic-filter-label");
+    if (sortedTopics.length <= 1 && topicLabel) {
+      topicLabel.classList.add("hidden");
     } else {
-      for (var i = 0; i < sortedThreads.length; i++) {
+      for (var i = 0; i < sortedTopics.length; i++) {
         var opt = document.createElement("option");
-        opt.value = sortedThreads[i];
-        opt.textContent = sortedThreads[i];
-        elThread.appendChild(opt);
+        opt.value = sortedTopics[i];
+        opt.textContent = formatTopicLabel(sortedTopics[i]);
+        elTopic.appendChild(opt);
       }
     }
   }
@@ -114,12 +137,12 @@
 
   function applyFilters() {
     var src = elSource.value;
-    var thread = elThread.value;
+    var topic = elTopic.value;
     var search = elSearch.value.toLowerCase();
 
     filtered = articles.filter(function (a) {
       if (src && a.source !== src) return false;
-      if (thread && (!a.threads || a.threads.indexOf(thread) === -1)) return false;
+      if (topic && (!a.topics || a.topics.indexOf(topic) === -1)) return false;
       if (search && a.title.toLowerCase().indexOf(search) === -1) return false;
       return true;
     });
@@ -203,6 +226,15 @@
       summary = '<p class="article-summary">' + escapeHtml(a.summary) + "</p>";
     }
 
+    var tags = "";
+    if (a.topics && a.topics.length > 0) {
+      tags = '<div class="article-tags">';
+      for (var i = 0; i < a.topics.length; i++) {
+        tags += '<span class="thread-tag">' + escapeHtml(formatTopicLabel(a.topics[i])) + '</span>';
+      }
+      tags += '</div>';
+    }
+
     var detail = '<div class="article-detail">';
     if (a.axiom_scores) {
       var keys = ["attention_economy", "data_sovereignty", "power_consolidation",
@@ -224,6 +256,7 @@
         '" rel="noopener" target="_blank">' + escapeHtml(a.source || "") + "</a>" +
       "<span>" + (a.published || "") + "</span>" +
       "</div>" +
+      tags +
       summary +
       detail +
       "</li>";
@@ -279,9 +312,9 @@
   function pushURL() {
     var params = new URLSearchParams();
     if (elSource.value) params.set("source", elSource.value);
-    if (elThread.value) params.set("thread", elThread.value);
+    if (elTopic.value) params.set("topic", elTopic.value);
     if (elSearch.value) params.set("q", elSearch.value);
-    if (sortField !== "score") params.set("sort", sortField);
+    if (sortField !== "date") params.set("sort", sortField);
     if (sortDir !== -1) params.set("dir", "asc");
     if (currentPage > 1) params.set("page", currentPage);
     var qs = params.toString();
@@ -291,7 +324,7 @@
   function readURL() {
     var params = new URLSearchParams(window.location.search);
     if (params.get("source")) elSource.value = params.get("source");
-    if (params.get("thread")) elThread.value = params.get("thread");
+    if (params.get("topic")) elTopic.value = params.get("topic");
     if (params.get("q")) elSearch.value = params.get("q");
     if (params.get("sort")) sortField = params.get("sort");
     if (params.get("dir") === "asc") sortDir = 1;

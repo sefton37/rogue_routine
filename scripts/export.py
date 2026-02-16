@@ -204,7 +204,7 @@ def get_articles_for_digest_date(
             id, title, source, url, pub_date, composite_score, summary,
             d1_attention_economy, d2_data_sovereignty, d3_power_consolidation,
             d4_coercion_cooperation, d5_fear_trust, d6_democratization,
-            d7_systemic_design, scored_at, entities
+            d7_systemic_design, scored_at, topics
         FROM articles
         WHERE composite_score IS NOT NULL
           AND (date(scored_at) = ? OR date(pub_date) = ?)
@@ -215,35 +215,13 @@ def get_articles_for_digest_date(
 
     articles = []
     for row in cursor.fetchall():
-        article_id = row[0]
-
-        # Get threads for this article
-        cursor.execute(
-            """
-            SELECT t.name
-            FROM threads t
-            JOIN article_threads at ON t.id = at.thread_id
-            WHERE at.article_id = ?
-            """,
-            (article_id,),
-        )
-        threads = [t[0] for t in cursor.fetchall()]
-
-        # Parse entities JSON
-        entities_raw = row[15]
-        entities = []
-        if entities_raw:
-            try:
-                entities_dict = json.loads(entities_raw)
-                # Flatten all entity types
-                for entity_type, entity_list in entities_dict.items():
-                    entities.extend(entity_list)
-            except (json.JSONDecodeError, AttributeError):
-                pass
+        # Parse topics
+        topics_raw = row[15] or ""
+        topics = [t.strip() for t in topics_raw.split(",") if t.strip()]
 
         articles.append(
             {
-                "id": article_id,
+                "id": row[0],
                 "title": row[1],
                 "source": row[2],
                 "url": row[3],
@@ -258,10 +236,9 @@ def get_articles_for_digest_date(
                     "democratization": row[12],
                     "systemic_design": row[13],
                 },
-                "threads": threads,
+                "topics": topics,
                 "digest_date": digest_date,
                 "summary": row[6],
-                "entities": entities,
             }
         )
 
@@ -297,13 +274,13 @@ def export_digest_markdown(
     sources = {a["source"] for a in articles if a["source"]}
     source_count = len(sources)
 
-    # Get top threads (threads with most articles on this date)
-    thread_counts = {}
+    # Get top topics from articles on this date
+    topic_counts = {}
     for article in articles:
-        for thread in article["threads"]:
-            thread_counts[thread] = thread_counts.get(thread, 0) + 1
+        for topic in article.get("topics", []):
+            topic_counts[topic] = topic_counts.get(topic, 0) + 1
 
-    top_threads = sorted(thread_counts.keys(), key=lambda t: thread_counts[t], reverse=True)[:5]
+    top_topics = sorted(topic_counts.keys(), key=lambda t: topic_counts[t], reverse=True)[:5]
 
     # Get top scoring articles
     top_articles = sorted(articles, key=lambda a: a["overall_score"] or 0, reverse=True)[:5]
@@ -332,7 +309,7 @@ def export_digest_markdown(
         "big_picture": big_picture,
         "article_count": len(articles),
         "source_count": source_count,
-        "top_threads": top_threads,
+        "top_topics": top_topics,
         "top_scoring_articles": top_scoring_articles,
     }
 
@@ -372,7 +349,7 @@ def export_articles_json(
             id, title, source, url, pub_date, composite_score, summary,
             d1_attention_economy, d2_data_sovereignty, d3_power_consolidation,
             d4_coercion_cooperation, d5_fear_trust, d6_democratization,
-            d7_systemic_design, scored_at, entities
+            d7_systemic_design, scored_at, entities, topics
         FROM articles
         WHERE composite_score IS NOT NULL
     """
@@ -397,20 +374,12 @@ def export_articles_json(
     for row in cursor.fetchall():
         article_id = row[0]
 
-        # Get threads for this article
-        cursor.execute(
-            """
-            SELECT t.name
-            FROM threads t
-            JOIN article_threads at ON t.id = at.thread_id
-            WHERE at.article_id = ?
-            """,
-            (article_id,),
-        )
-        threads = [t[0] for t in cursor.fetchall()]
-
         # Determine digest date (date of scored_at)
         digest_date = extract_date(row[14])
+
+        # Parse topics
+        topics_raw = row[16] or ""
+        topics = [t.strip() for t in topics_raw.split(",") if t.strip()]
 
         articles.append(
             {
@@ -429,7 +398,7 @@ def export_articles_json(
                     "democratization": row[12],
                     "systemic_design": row[13],
                 },
-                "threads": threads,
+                "topics": topics,
                 "digest_date": digest_date,
                 "summary": row[6],
             }

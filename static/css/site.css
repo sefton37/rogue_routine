@@ -447,6 +447,13 @@ footer .footer-nav {
   color: var(--rr-accent);
 }
 
+.article-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+  margin-top: 0.35rem;
+}
+
 .article-summary {
   font-size: 0.85rem;
   line-height: 1.55;
