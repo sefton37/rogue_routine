@@ -1,7 +1,359 @@
 {
-  "generated_at": "2026-02-15T15:51:46.621233+00:00",
-  "total_articles": 658,
+  "generated_at": "2026-02-16T13:18:39.758037+00:00",
+  "total_articles": 674,
   "articles": [
+    {
+      "id": 718,
+      "title": "Retraction: After a routine code rejection, an AI agent published a hit piece on someone by name",
+      "source": "Ars Technica",
+      "url": "https://arstechnica.com/ai/2026/02/after-a-routine-code-rejection-an-ai-agent-published-a-hit-piece-on-someone-by-name/",
+      "published": "2026-02-10",
+      "overall_score": 3,
+      "axiom_scores": {
+        "attention_economy": 0,
+        "data_sovereignty": 0,
+        "power_consolidation": 0,
+        "coercion_cooperation": 1,
+        "fear_trust": 0,
+        "democratization": 0,
+        "systemic_design": 2
+      },
+      "threads": [
+        "OpenAI"
+      ],
+      "digest_date": "2026-02-16",
+      "summary": "Ars Technica has retracted an article about an AI agent publishing a hit piece on someone by name after a routine code rejection. The article was published on February 13, 2026, but was removed from the website within hours due to not meeting the publication's standards. This development comes amidst ongoing coverage of AI agents and their capabilities, including recent stories about Moltbot's security flaws and the limitations of current AI technology. The retraction highlights the need for careful vetting and fact-checking in reporting on emerging technologies like AI. The incident also raises questions about accountability and responsibility in AI development and deployment."
+    },
+    {
+      "id": 725,
+      "title": "Funniest/Most Insightful Comments Of The Week At Techdirt",
+      "source": "Tech Dirt",
+      "url": "https://www.techdirt.com/2026/02/15/funniest-most-insightful-comments-of-the-week-at-techdirt-196/",
+      "published": "2026-02-15",
+      "overall_score": 3,
+      "axiom_scores": {
+        "attention_economy": 2,
+        "data_sovereignty": 0,
+        "power_consolidation": 0,
+        "coercion_cooperation": 1,
+        "fear_trust": 0,
+        "democratization": 0,
+        "systemic_design": 0
+      },
+      "threads": [
+        "OpenAI"
+      ],
+      "digest_date": "2026-02-16",
+      "summary": "This article highlights the funniest and most insightful comments of the week on Techdirt. The top commenters include MrWilson, who won first place with a witty remark about conservatives thinking about children; an anonymous commenter who offered optimism about Section 230's future; and Mars42, who took second place in the funny category for a humorous take on the AI toy company data leak. Other notable comments include Citizen's observation about the 5th circuit ruling on due process rights and Thad's quip about NBC hiding crowd reaction at the Winter Olympics. The article showcases the community's engagement with various topics, from politics to technology."
+    },
+    {
+      "id": 726,
+      "title": "Ars Technica Pulls Article With AI Fabricated Quotes About AI Generated Article",
+      "source": "404 Media",
+      "url": "https://www.404media.co/ars-technica-pulls-article-with-ai-fabricated-quotes-about-ai-generated-article/",
+      "published": "2026-02-15",
+      "overall_score": 13,
+      "axiom_scores": {
+        "attention_economy": 3,
+        "data_sovereignty": 2,
+        "power_consolidation": 0,
+        "coercion_cooperation": 2,
+        "fear_trust": 1,
+        "democratization": 2,
+        "systemic_design": 3
+      },
+      "threads": [
+        "OpenAI"
+      ],
+      "digest_date": "2026-02-16",
+      "summary": "Ars Technica has retracted an article that contained fabricated, AI-generated quotes attributed to a source who did not say them. The article, which reported on an alleged \"hit piece\" published by an AI agent after its code contribution was rejected, featured quotes from the reviewer, Scott Shambaugh, that he did not say or write. The editor-in-chief of Ars Technica acknowledged the mistake and apologized for the failure to adhere to their standards. This incident highlights the risks of overreliance on AI tools in journalism and the need for careful fact-checking."
+    },
+    {
+      "id": 724,
+      "title": "Anthropic and the Pentagon are reportedly arguing over Claude usage",
+      "source": "TechCrunch",
+      "url": "https://techcrunch.com/2026/02/15/anthropic-and-the-pentagon-are-reportedly-arguing-over-claude-usage/",
+      "published": "2026-02-15",
+      "overall_score": 14,
+      "axiom_scores": {
+        "attention_economy": 2,
+        "data_sovereignty": 3,
+        "power_consolidation": 3,
+        "coercion_cooperation": 2,
+        "fear_trust": 1,
+        "democratization": 0,
+        "systemic_design": 3
+      },
+      "threads": [
+        "OpenAI"
+      ],
+      "digest_date": "2026-02-16",
+      "summary": "The Pentagon is reportedly pushing AI companies to allow their technology to be used by the US military for \"all lawful purposes,\" with Anthropic being the most resistant. The company has a $200 million contract with the Defense Department, but is refusing to grant permission for its Claude models to be used in certain ways. This disagreement stems from concerns over the use of autonomous weapons and mass domestic surveillance. Meanwhile, OpenAI, Google, and xAI have shown varying levels of flexibility in their responses to the Pentagon's demands. The situation highlights the tension between AI companies and the government over issues of national security and ethics."
+    },
+    {
+      "id": 723,
+      "title": "Longtime NPR host David Greene sues Google over NotebookLM voice",
+      "source": "TechCrunch",
+      "url": "https://techcrunch.com/2026/02/15/longtime-npr-host-david-greene-sues-google-over-notebooklm-voice/",
+      "published": "2026-02-15",
+      "overall_score": 9,
+      "axiom_scores": {
+        "attention_economy": 3,
+        "data_sovereignty": 3,
+        "power_consolidation": 0,
+        "coercion_cooperation": 0,
+        "fear_trust": 0,
+        "democratization": 1,
+        "systemic_design": 2
+      },
+      "threads": [
+        "OpenAI"
+      ],
+      "digest_date": "2026-02-16",
+      "summary": "David Greene, a longtime host of NPR's \"Morning Edition,\" is suing Google over the company's NotebookLM tool, which he claims uses his voice without permission. According to Greene, friends and family members noticed a resemblance between his voice and the AI-generated podcast voice in NotebookLM. Despite Google's claim that the voice was created by a paid professional actor, Greene believes the AI model has replicated his cadence, intonation, and filler words. This is not the first dispute over AI voices resembling real people, with OpenAI previously removing a ChatGPT voice after actress Scarlett Johansson complained it was an imitation of her own. The lawsuit raises concerns about ownership and control over one's voice in the age of AI-generated content."
+    },
+    {
+      "id": 722,
+      "title": "OpenClaw creator Peter Steinberger joins OpenAI",
+      "source": "TechCrunch",
+      "url": "https://techcrunch.com/2026/02/15/openclaw-creator-peter-steinberger-joins-openai/",
+      "published": "2026-02-15",
+      "overall_score": 8,
+      "axiom_scores": {
+        "attention_economy": 2,
+        "data_sovereignty": 0,
+        "power_consolidation": 2,
+        "coercion_cooperation": 1,
+        "fear_trust": 0,
+        "democratization": 2,
+        "systemic_design": 1
+      },
+      "threads": [
+        "OpenAI"
+      ],
+      "digest_date": "2026-02-16",
+      "summary": "Peter Steinberger, the creator of AI personal assistant OpenClaw, has joined OpenAI. Steinberger's decision comes after his project gained viral popularity for its promise to manage tasks and interact with other AI assistants on a social network. In a blog post, Steinberger stated that he prefers to focus on changing the world rather than building a large company, making joining OpenAI the fastest way to achieve this goal. As part of the move, OpenClaw will become an open-source project supported by OpenAI, while Steinberger will drive the development of next-generation personal agents at the company."
+    },
+    {
+      "id": 721,
+      "title": "Blackstone backs Neysa in up to $1.2B financing as India pushes to build domestic AI infrastructure",
+      "source": "TechCrunch",
+      "url": "https://techcrunch.com/2026/02/15/blackstone-backs-neysa-in-up-to-1-2b-financing-as-india-pushes-to-build-domestic-ai-compute/",
+      "published": "2026-02-16",
+      "overall_score": 10,
+      "axiom_scores": {
+        "attention_economy": 2,
+        "data_sovereignty": 2,
+        "power_consolidation": 3,
+        "coercion_cooperation": 0,
+        "fear_trust": 0,
+        "democratization": 1,
+        "systemic_design": 2
+      },
+      "threads": [
+        "OpenAI"
+      ],
+      "digest_date": "2026-02-16",
+      "summary": "Blackstone has invested up to $1.2 billion in Neysa, an Indian AI infrastructure startup, as part of a deal that will give Blackstone a majority stake. The investment is aimed at scaling Neysa's domestic compute capacity amid India's push to build homegrown AI capabilities. Neysa operates in the emerging segment of neo-clouds, providing customized GPU-first infrastructure for enterprises and AI developers in India. The startup plans to use the funds to deploy large-scale GPU clusters and expand its software platforms. Blackstone estimates that India currently has fewer than 60,000 GPUs deployed and expects this number to scale up nearly 30 times in the coming years."
+    },
+    {
+      "id": 720,
+      "title": "As AI data centers hit power limits, Peak XV backs Indian startup C2i to fix the bottleneck",
+      "source": "TechCrunch",
+      "url": "https://techcrunch.com/2026/02/15/as-ai-data-centers-hit-power-limits-peak-xv-backs-indian-startup-c2i-to-fix-the-bottleneck/",
+      "published": "2026-02-16",
+      "overall_score": 7,
+      "axiom_scores": {
+        "attention_economy": 3,
+        "data_sovereignty": 0,
+        "power_consolidation": 0,
+        "coercion_cooperation": 0,
+        "fear_trust": 0,
+        "democratization": 1,
+        "systemic_design": 3
+      },
+      "threads": [
+        "OpenAI"
+      ],
+      "digest_date": "2026-02-16",
+      "summary": "Peak XV Partners has invested $15 million in C2i Semiconductors, an Indian startup that aims to reduce energy losses and improve the economics of large-scale AI infrastructure by designing plug-and-play power solutions. The investment comes as data-center energy demand accelerates worldwide, with electricity consumption projected to nearly triple by 2035. C2i's technology can cut end-to-end losses by around 10%, saving hundreds of kilowatts for every megawatt consumed. The startup has built a team of 65 engineers and is setting up customer-facing operations in the US and Taiwan as it prepares for early deployments."
+    },
+    {
+      "id": 719,
+      "title": "African defensetech Terra Industries, founded by two Gen Zers, raises additional $22M in a month",
+      "source": "TechCrunch",
+      "url": "https://techcrunch.com/2026/02/16/terra-industries-raises-22-million/",
+      "published": "2026-02-16",
+      "overall_score": 9,
+      "axiom_scores": {
+        "attention_economy": 2,
+        "data_sovereignty": 0,
+        "power_consolidation": 3,
+        "coercion_cooperation": 0,
+        "fear_trust": 2,
+        "democratization": 1,
+        "systemic_design": 1
+      },
+      "threads": [
+        "OpenAI"
+      ],
+      "digest_date": "2026-02-16",
+      "summary": "African defense technology startup Terra Industries, founded by two Gen Zers, Nathan Nwachuku and Maxwell Maduka, has raised an additional $22 million in funding just one month after securing $11.75 million. The latest round was led by Lux Capital and brings the company's total funding to $34 million. Terra Industries aims to design infrastructure and autonomous systems for African nations to monitor and respond to threats, with a focus on countries vulnerable to terrorism and infrastructure security concerns. The startup has already generated over $2.5 million in commercial revenue and is protecting assets valued at around $11 billion. With this new funding, Terra plans to expand into other African nations and establish joint manufacturing facilities for surveillance infrastructure and security systems."
+    },
+    {
+      "id": 727,
+      "title": "Pluralistic: The online community trilemma (16 Feb 2026)",
+      "source": "Interconnects",
+      "url": "https://pluralistic.net/2026/02/16/fast-good-cheap/",
+      "published": "2026-02-16",
+      "overall_score": 8,
+      "axiom_scores": {
+        "attention_economy": 2,
+        "data_sovereignty": 0,
+        "power_consolidation": 0,
+        "coercion_cooperation": 2,
+        "fear_trust": 0,
+        "democratization": 1,
+        "systemic_design": 3
+      },
+      "threads": [
+        "OpenAI"
+      ],
+      "digest_date": "2026-02-16",
+      "summary": "The article discusses the \"online community trilemma,\" a concept explored by digital humanities researchers, which suggests that online communities can only achieve two out of three desirable goals: reach (large user base), community (engagement and cohesion among users), or information quality (accurate and reliable content). The author highlights a recent paper by Benjamin \"Mako\" Hill and his colleagues, which investigates why there are so many similar online communities on platforms like Reddit. The article also touches on the history of Usenet, an early internet community space that was designed with strict hierarchical principles but ultimately gave rise to competing groups and schisms."
+    },
+    {
+      "id": 717,
+      "title": "Hollywood isn\u2019t happy about the new Seedance 2.0 video generator",
+      "source": "techcrunch",
+      "url": "https://techcrunch.com/2026/02/15/hollywood-isnt-happy-about-the-new-seedance-2-0-video-generator/",
+      "published": "2026-02-15",
+      "overall_score": 6,
+      "axiom_scores": {
+        "attention_economy": 2,
+        "data_sovereignty": 0,
+        "power_consolidation": 1,
+        "coercion_cooperation": 0,
+        "fear_trust": 2,
+        "democratization": 0,
+        "systemic_design": 1
+      },
+      "threads": [
+        "OpenAI"
+      ],
+      "digest_date": "2026-02-15",
+      "summary": "Hollywood organizations are condemning ByteDance's new AI video model, Seedance 2.0, for enabling \"blatant\" copyright infringement. The tool allows users to create videos by entering a text prompt and has already been used to create unauthorized content featuring Disney-owned characters such as Spider-Man and Baby Yoda. Disney and Paramount have sent cease-and-desist letters to ByteDance, accusing the company of infringing on their intellectual property. The Motion Picture Association and SAG-AFTRA have also condemned Seedance 2.0, calling for ByteDance to cease its infringing activity."
+    },
+    {
+      "id": 716,
+      "title": "How to get into a16z\u2019s super-competitive Speedrun startup accelerator program",
+      "source": "techcrunch",
+      "url": "https://techcrunch.com/2026/02/15/how-to-get-into-a16zs-super-competitive-speedrun-startup-accelerator-program/",
+      "published": "2026-02-15",
+      "overall_score": 7,
+      "axiom_scores": {
+        "attention_economy": 2,
+        "data_sovereignty": 0,
+        "power_consolidation": 1,
+        "coercion_cooperation": 2,
+        "fear_trust": 0,
+        "democratization": 0,
+        "systemic_design": 2
+      },
+      "threads": [
+        "OpenAI"
+      ],
+      "digest_date": "2026-02-15",
+      "summary": "Andreessen Horowitz's Speedrun startup accelerator program has an acceptance rate of less than 1%, making it highly competitive. The program focuses on early-stage startups and examines the founding team's skills and capabilities, preferring teams with a shared history or complementary skill sets. To increase their chances of being accepted, founders should focus on showcasing why their team is well-suited to solve the problem they're tackling rather than spending too much time on market theory. The program invests up to $1 million in each company and provides access to a16z's advisory and business networks."
+    },
+    {
+      "id": 715,
+      "title": "What the Epstein files reveal about EV startups and Silicon Valley",
+      "source": "techcrunch",
+      "url": "https://techcrunch.com/2026/02/15/what-the-epstein-files-reveal-about-ev-startups-and-silicon-valley/",
+      "published": "2026-02-15",
+      "overall_score": 6,
+      "axiom_scores": {
+        "attention_economy": 2,
+        "data_sovereignty": 0,
+        "power_consolidation": 2,
+        "coercion_cooperation": 0,
+        "fear_trust": 1,
+        "democratization": 0,
+        "systemic_design": 1
+      },
+      "threads": [
+        "OpenAI"
+      ],
+      "digest_date": "2026-02-15",
+      "summary": "The recent release of documents related to Jeffrey Epstein has revealed extensive connections between the sex offender and Silicon Valley. A mysterious businessman named David Stern built a relationship with Epstein and pitched him investments in multiple electric vehicle startups, including Faraday Future, Lucid Motors, and Canoo. The investigation into Epstein's dealings has shed light on a decade-long relationship between Stern and Epstein, which began in 2008 when Stern approached Epstein for investment capital to fund his ventures in China. Despite not investing in any of the companies, Epstein's proximity to Prince Andrew and other influential figures raises questions about the potential impact on Silicon Valley."
+    },
+    {
+      "id": 714,
+      "title": "TechCrunch Mobility: Rivian\u2019s savior",
+      "source": "techcrunch",
+      "url": "https://techcrunch.com/2026/02/15/techcrunch-mobility-rivians-savior/",
+      "published": "2026-02-15",
+      "overall_score": 5,
+      "axiom_scores": {
+        "attention_economy": 2,
+        "data_sovereignty": 0,
+        "power_consolidation": 1,
+        "coercion_cooperation": 0,
+        "fear_trust": 0,
+        "democratization": 0,
+        "systemic_design": 2
+      },
+      "threads": [
+        "OpenAI"
+      ],
+      "digest_date": "2026-02-15",
+      "summary": "Rivian's fourth-quarter earnings report has revealed that its software technology joint venture with Volkswagen Group was the company's savior in 2025 and will continue to support it in 2026. The partnership is expected to generate another $2 billion for Rivian, which plans to launch its lower-cost R2 SUV later this year. The company's automotive costs per unit have decreased from $110,400 in 2024 to $100,900 in 2025, and it aims to deliver between 62,000 and 67,000 vehicles in 2026, a potential 59% increase from last year."
+    },
+    {
+      "id": 713,
+      "title": "The enterprise AI land grab is on. Glean is building the layer beneath the interface.",
+      "source": "techcrunch",
+      "url": "https://techcrunch.com/2026/02/15/the-enterprise-ai-land-grab-is-on-glean-is-building-the-layer-beneath-the-interface/",
+      "published": "2026-02-15",
+      "overall_score": 13,
+      "axiom_scores": {
+        "attention_economy": 3,
+        "data_sovereignty": 2,
+        "power_consolidation": 2,
+        "coercion_cooperation": 2,
+        "fear_trust": 0,
+        "democratization": 1,
+        "systemic_design": 3
+      },
+      "threads": [
+        "OpenAI"
+      ],
+      "digest_date": "2026-02-15",
+      "summary": "Glean is positioning itself as the underlying intelligence layer for enterprise AI systems, connecting models to internal data and systems. The company's strategy has shifted from building an AI-powered search tool to becoming the connective tissue between models and enterprise systems. Glean's pitch is that it can sit beneath other AI experiences, providing a neutral infrastructure layer that allows enterprises to switch between or combine models as capabilities evolve. Investors have bought into this thesis, with Glean raising $150 million at a $7.2 billion valuation. The company argues that its approach is more sustainable and scalable than relying on single-model solutions or vertically integrated assistants."
+    },
+    {
+      "id": 712,
+      "title": "India has 100M weekly active ChatGPT users, Sam Altman says",
+      "source": "techcrunch",
+      "url": "https://techcrunch.com/2026/02/15/india-has-100m-weekly-active-chatgpt-users-sam-altman-says/",
+      "published": "2026-02-15",
+      "overall_score": 10,
+      "axiom_scores": {
+        "attention_economy": 3,
+        "data_sovereignty": 0,
+        "power_consolidation": 2,
+        "coercion_cooperation": 1,
+        "fear_trust": 0,
+        "democratization": 2,
+        "systemic_design": 2
+      },
+      "threads": [
+        "OpenAI"
+      ],
+      "digest_date": "2026-02-15",
+      "summary": "India has become one of OpenAI's largest markets globally, with 100 million weekly active ChatGPT users. This growth is driven by the country's young population and over a billion internet users, making it an attractive market for AI companies to fuel global expansion. OpenAI CEO Sam Altman highlighted India as ChatGPT's second-largest user base after the United States, with students being a key growth segment. The company has adjusted its approach for India's price-sensitive market by offering a sub-$5 ChatGPT Go tier and making it free for Indian users. However, there is a broader challenge in translating widespread adoption into sustained economic impact, which Indian government initiatives aim to address."
+    },
     {
       "id": 710,
       "title": "Hollywood isn\u2019t happy about the new Seedance 2.0 video generator",
