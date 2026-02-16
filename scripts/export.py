@@ -86,6 +86,39 @@ def strip_markdown(text: str) -> str:
     return text.strip()
 
 
+def extract_big_picture(content: str) -> str:
+    """Extract the full Big Picture section from digest content."""
+    if not content:
+        return ""
+
+    lines = content.split("\n")
+    in_section = False
+    section = []
+    for line in lines:
+        if re.match(r"^##\s+.*Big Picture", line, re.IGNORECASE):
+            in_section = True
+            continue
+        elif in_section and line.startswith("## "):
+            break
+        elif in_section:
+            section.append(line)
+
+    text = "\n".join(section).strip()
+    if text:
+        return text
+
+    # Fallback: extract first substantive paragraph if no Big Picture heading
+    paragraphs = re.split(r"\n\n+", content)
+    for para in paragraphs:
+        para = para.strip()
+        if not para or para.startswith("#"):
+            continue
+        clean = strip_markdown(para)
+        if len(clean) >= 40:
+            return clean
+    return ""
+
+
 def extract_summary(content: str, max_length: int = 200) -> str:
     """Extract first substantive paragraph from digest content and truncate."""
     if not content:
@@ -123,9 +156,15 @@ def format_yaml_frontmatter(data: Dict[str, Any]) -> str:
         if value is None:
             continue
         elif isinstance(value, str):
-            # Escape quotes in strings
-            escaped = value.replace('"', '\\"')
-            lines.append(f'{key}: "{escaped}"')
+            if "\n" in value:
+                # Multiline: use YAML literal block scalar
+                lines.append(f"{key}: |")
+                for line in value.split("\n"):
+                    lines.append(f"  {line}")
+            else:
+                # Escape quotes in strings
+                escaped = value.replace('"', '\\"')
+                lines.append(f'{key}: "{escaped}"')
         elif isinstance(value, (int, float)):
             lines.append(f"{key}: {value}")
         elif isinstance(value, list):
@@ -280,10 +319,12 @@ def export_digest_markdown(
 
     # Generate frontmatter
     summary = extract_summary(content)
+    big_picture = extract_big_picture(content)
     frontmatter_data = {
         "title": f"Daily Signal — {digest_date}",
         "date": digest_date,
         "summary": summary,
+        "big_picture": big_picture,
         "article_count": len(articles),
         "source_count": source_count,
         "top_threads": top_threads,

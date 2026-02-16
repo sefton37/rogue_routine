@@ -1,8 +1,10 @@
 {{ define "main" }}
 <div class="hero">
   <img src="/img/hero.png" alt="" class="hero-img">
-  <h1 class="hero-title">Rogue Routine</h1>
-  <p class="hero-subtitle">Sovereign news intelligence, powered by Sieve.</p>
+</div>
+<div class="signal-header">
+  <h1>Rogue Routine</h1>
+  <p class="signal-intro">I read the news the way I once read the data lake. I look for the gap — the distance between what is said and what the data shows. Every day, I score hundreds of articles against seven axioms and surface what the patterns reveal. This is the signal. What you do with it is your sacred labor.</p>
 </div>
 {{ $digests := where .Site.RegularPages "Section" "digests" }}
 {{ $paginator := .Paginate $digests }}

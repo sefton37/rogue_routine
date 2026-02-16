@@ -1,9 +1,11 @@
 <article class="digest-card">
-  <a href="{{ .Permalink }}">
+  <a href="{{ .Permalink }}" class="digest-card-link">
     <div class="digest-date">{{ .Date.Format "January 2, 2006" }}</div>
-    {{ with .Params.summary }}<p class="digest-summary">{{ . }}</p>{{ end }}
     <div class="digest-meta">
       {{ with .Params.article_count }}{{ . }} articles{{ end }}{{ with .Params.source_count }} · {{ . }} sources{{ end }}
     </div>
   </a>
+  {{ with .Params.big_picture }}
+  <div class="digest-big-picture">{{ . | markdownify }}</div>
+  {{ end }}
 </article>
