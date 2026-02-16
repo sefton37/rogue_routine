@@ -447,6 +447,13 @@ footer .footer-nav {
   color: var(--rr-accent);
 }
 
+.article-summary {
+  font-size: 0.85rem;
+  line-height: 1.55;
+  color: var(--rr-text-muted);
+  margin: 0.3rem 0 0 0;
+}
+
 .article-item .article-meta {
   font-size: 0.8rem;
   color: var(--rr-text-muted);
@@ -457,13 +464,22 @@ footer .footer-nav {
   align-items: center;
 }
 
+.article-source {
+  color: var(--rr-text-muted);
+  text-decoration: none;
+}
+
+.article-source:hover {
+  color: var(--rr-accent);
+  text-decoration: underline;
+}
+
 .article-score {
   display: inline-flex;
   align-items: center;
   font-weight: 700;
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   color: var(--rr-accent);
-  min-width: 2ch;
 }
 
 .axiom-bars {

@@ -198,13 +198,9 @@
       bars += "</span>";
     }
 
-    var threads = "";
-    if (a.threads && a.threads.length) {
-      threads = '<div class="thread-tags" style="margin-top:0.25rem">';
-      for (var j = 0; j < a.threads.length; j++) {
-        threads += '<span class="thread-tag">' + escapeHtml(a.threads[j]) + "</span>";
-      }
-      threads += "</div>";
+    var summary = "";
+    if (a.summary) {
+      summary = '<p class="article-summary">' + escapeHtml(a.summary) + "</p>";
     }
 
     var detail = '<div class="article-detail">';
@@ -217,22 +213,18 @@
           axiomLabels[keys[i]] + '</span><span class="axiom-value">' + v + '/3</span></div>';
       }
     }
-    if (a.summary) {
-      detail += '<p style="margin-top:0.5rem">' + escapeHtml(a.summary) + "</p>";
-    }
-    detail += '<p style="margin-top:0.5rem"><a href="' + escapeHtml(a.url) +
-      '" rel="noopener" target="_blank">Read original →</a></p>';
     detail += "</div>";
 
     return '<li class="article-item">' +
       '<div class="article-title"><a href="#">' + escapeHtml(a.title) + "</a></div>" +
       '<div class="article-meta">' +
-      '<span class="article-score">' + (a.overall_score || 0) + "</span>" +
+      '<span class="article-score">Score: ' + (a.overall_score || 0) + "</span>" +
       bars +
-      "<span>" + escapeHtml(a.source || "") + "</span>" +
+      '<a class="article-source" href="' + escapeHtml(a.url) +
+        '" rel="noopener" target="_blank">' + escapeHtml(a.source || "") + "</a>" +
       "<span>" + (a.published || "") + "</span>" +
       "</div>" +
-      threads +
+      summary +
       detail +
       "</li>";
   }
