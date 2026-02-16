@@ -1,8 +1,11 @@
 {{ define "main" }}
 <article>
   <header class="digest-header">
-    <div class="digest-date">{{ .Date.Format "January 2, 2006" }}</div>
-    <h1>{{ .Title }}</h1>
+    <div class="digest-date">{{ .Date.Format "Monday, January 2, 2006" }}</div>
+    <h1>The Daily Signal</h1>
+    <div class="digest-meta">
+      {{ with .Params.article_count }}{{ . }} articles analyzed{{ end }}{{ with .Params.source_count }} across {{ . }} sources{{ end }}
+    </div>
   </header>
 
   <div class="digest-content">
@@ -10,9 +13,6 @@
   </div>
 
   <div class="digest-footer">
-    <p>
-      {{ with .Params.article_count }}{{ . }} articles analyzed{{ end }}{{ with .Params.source_count }} across {{ . }} sources{{ end }}.
-    </p>
     {{ with .Params.top_scoring_articles }}
     <details>
       <summary>Top scoring articles</summary>

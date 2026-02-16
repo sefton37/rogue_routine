@@ -70,11 +70,16 @@
     }
 
     var sortedThreads = Object.keys(threads).sort();
-    for (var i = 0; i < sortedThreads.length; i++) {
-      var opt = document.createElement("option");
-      opt.value = sortedThreads[i];
-      opt.textContent = sortedThreads[i];
-      elThread.appendChild(opt);
+    var threadLabel = document.getElementById("thread-filter-label");
+    if (sortedThreads.length <= 1 && threadLabel) {
+      threadLabel.classList.add("hidden");
+    } else {
+      for (var i = 0; i < sortedThreads.length; i++) {
+        var opt = document.createElement("option");
+        opt.value = sortedThreads[i];
+        opt.textContent = sortedThreads[i];
+        elThread.appendChild(opt);
+      }
     }
   }
 

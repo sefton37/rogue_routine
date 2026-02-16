@@ -6,6 +6,7 @@
     </div>
   </a>
   {{ with .Params.big_picture }}
-  <div class="digest-big-picture">{{ . | markdownify }}</div>
+  <div class="digest-big-picture collapsed">{{ . | markdownify }}</div>
+  <button class="digest-read-more" onclick="this.previousElementSibling.classList.toggle('collapsed');this.textContent=this.textContent==='Read more'?'Show less':'Read more'">Read more</button>
   {{ end }}
 </article>

@@ -318,8 +318,13 @@ def export_digest_markdown(
     ]
 
     # Generate frontmatter
-    summary = extract_summary(content)
     big_picture = extract_big_picture(content)
+    # Use big_picture for summary (truncated) — more reliable than first-paragraph guessing
+    if big_picture:
+        clean_bp = strip_markdown(big_picture.split("\n\n")[0])
+        summary = clean_bp[:200].rsplit(" ", 1)[0] + "..." if len(clean_bp) > 200 else clean_bp
+    else:
+        summary = extract_summary(content)
     frontmatter_data = {
         "title": f"Daily Signal — {digest_date}",
         "date": digest_date,
