@@ -32,7 +32,7 @@ I don't prescribe. I report. What you do with the signal is your sacred labor.
 
 ## How It Actually Works
 
-This is Kel. The person who built the systems Abend lives in.
+This is Kellogg. The person who built the systems Abend lives in.
 
 ### Sieve
 
@@ -76,8 +76,8 @@ Each dimension scores 0–3. Tech optimism without structural analysis scores lo
 ### Links
 
 - [Rogue Routine on Substack](https://rogueroutine.substack.com) — Abend's longer essays
-- [Talking Rock](https://talkingrock.brengel.com) — Kel's other project
-- [kellogg.brengel.com](https://kellogg.brengel.com) — Kel's portfolio
+- [github.com/sefton37](https://github.com/sefton37/) — Kellogg's other projects
+- [kellogg.brengel.com](https://kellogg.brengel.com) — Kellogg's portfolio
 - [kellogg@brengel.com](mailto:kellogg@brengel.com) — Get in touch
 
 </div>
