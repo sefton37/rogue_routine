@@ -66,6 +66,70 @@ Sieve scores articles against the **No One Relevancy Rubric** — seven axioms d
 
 Each dimension scores 0–3. Tech optimism without structural analysis scores low. Outrage without context scores low. Positive developments score as high as negative ones.
 
+### Under the Hood
+
+The whole system is two repos: [Sieve](https://github.com/sefton37/sieve) (the intelligence engine) and [Rogue Routine](https://github.com/sefton37/rogue_routine) (the website you're reading). Everything runs on local hardware. No cloud APIs, no per-token costs, no data leaving the machine.
+
+#### The Sieve Pipeline
+
+Sieve is a Python + Flask application backed by SQLite. An hourly pipeline runs eight stages in sequence:
+
+1. **Ingest** — [n8n](https://n8n.io/) (self-hosted workflow automation) polls ~10 RSS feeds and writes new articles as JSONL to disk. Sieve reads the file, deduplicates by URL, normalizes source names, and stores the raw articles.
+
+2. **Compress** — The JSONL file is deduplicated to prevent unbounded growth. Only the most recent entry per URL is kept.
+
+3. **Summarize** — Each article is sent to a local LLM ([Ollama](https://ollama.com/) running Llama 3.2) for a 5–8 sentence summary and keyword extraction. Before summarizing, Sieve searches the last 30 days of embedded articles for the 5 most similar, and injects their summaries as context. This lets the model recognize ongoing stories — "this is the third regulatory action against Meta this week" — without being told.
+
+4. **Embed** — Summaries are converted to 768-dimensional vectors using `nomic-embed-text` via Ollama. These embeddings live in a `sqlite-vec` virtual table for fast nearest-neighbor search. They power contextualized summarization, thread detection, and the RAG chat interface.
+
+5. **Score** — The LLM scores each article against the seven axioms (0–3 per dimension). Python handles the math: composite score (sum, 0–21), relevance tier (deterministic cutoffs), and a convergence flag for articles that light up 5+ dimensions at once. No LLM arithmetic — the model provides qualitative judgments, the code does the numbers.
+
+6. **Extract Entities** — The LLM identifies companies, people, products, legislation, and other named entities. Stored as structured JSON for thread detection and filtering.
+
+7. **Classify Topics** — Articles are tagged against a fixed 17-topic taxonomy (surveillance, AI capabilities, privacy, platform dynamics, etc.). This drives the topic filters on the Reader page.
+
+8. **Detect Threads** — A purely algorithmic step (no LLM). Sieve builds a graph of related articles using embedding similarity (KNN top-5) and entity overlap (2+ shared entities). Connected components with 5+ articles become threads — named after the most frequent entity in the cluster.
+
+Stages 1–5 are fatal: if any fail, the pipeline stops. Stages 6–8 are non-fatal: they log errors and continue, because the core analysis is already done.
+
+#### Digest Generation
+
+At 6 AM daily, Sieve generates a digest in Abend's voice. Articles are grouped by tier:
+
+- **Tier 1** (score 15–21): Full deep-dive analysis with dimensional rationales
+- **Tier 2** (score 10–14): Substantive coverage with score context
+- **Tier 3** (score 5–9): Brief mentions that feed pattern analysis
+- **Tier 4** (score 1–4): Title-only references
+- **Tier 5** (score 0): Excluded
+
+The LLM generates per-article analysis for T1/T2, then synthesizes everything into three sections: The Big Picture, Patterns & Signals, and What Deserves Attention. The result is 1500–2500 words of connected analysis, not just a list of summaries.
+
+#### From Sieve to This Website
+
+[Rogue Routine](https://github.com/sefton37/rogue_routine) is a Hugo static site. A Python export script reads Sieve's SQLite database and generates:
+
+- **Digest pages** — Markdown files with YAML frontmatter (date, article count, source count, top topics, the Big Picture text, top scoring articles)
+- **articles.json** — Every scored article with its axiom scores, topics, summary, and source URL. This powers the Reader's client-side filtering and sorting.
+
+Hugo builds static HTML. `rsync` pushes it to a VPS running nginx. The deploy runs automatically after every Sieve pipeline — when new articles are scored, the site updates itself.
+
+The Reader page is ~15KB of vanilla JavaScript. No framework, no build step. It loads articles.json and handles filtering, sorting, pagination, and the axiom score tooltips entirely client-side.
+
+#### The Stack
+
+| Layer | Technology |
+|-------|-----------|
+| RSS collection | n8n (self-hosted) |
+| Intelligence engine | Python, Flask, SQLite, sqlite-vec |
+| LLM inference | Ollama (Llama 3.2, nomic-embed-text) |
+| Static site | Hugo |
+| Styling | Pico CSS + custom overrides |
+| Reader interactivity | Vanilla JavaScript (~15KB) |
+| Hosting | nginx on a VPS, Cloudflare DNS |
+| Scheduling | APScheduler (hourly pipeline, daily digest) |
+
+Total external dependencies: zero cloud APIs, zero subscriptions. The whole thing runs on one machine with a 4GB GPU.
+
 ### What This Is Not
 
 - **Not an aggregator.** Sieve doesn't just collect articles — it scores, analyzes, and synthesizes them.
