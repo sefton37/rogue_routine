@@ -128,7 +128,7 @@ The Reader page is ~15KB of vanilla JavaScript. No framework, no build step. It 
 | Hosting | nginx on a VPS, Cloudflare DNS |
 | Scheduling | APScheduler (hourly pipeline, daily digest) |
 
-Total external dependencies: zero cloud APIs, zero subscriptions. The whole thing runs on one machine with a 4GB GPU.
+Total external dependencies: zero cloud APIs, zero subscriptions. Sieve runs on a local machine with a GTX 4070, the site is served from a VPS.
 
 ### What This Is Not
 
