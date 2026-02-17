@@ -82,7 +82,7 @@ Sieve is a Python + Flask application backed by SQLite. An hourly pipeline runs 
 
 4. **Embed** — Summaries are converted to 768-dimensional vectors using `nomic-embed-text` via Ollama. These embeddings live in a `sqlite-vec` virtual table for fast nearest-neighbor search. They power contextualized summarization, thread detection, and the RAG chat interface.
 
-5. **Score** — The LLM scores each article against the seven axioms (0–3 per dimension). Python handles the math: composite score (sum, 0–21), relevance tier (deterministic cutoffs), and a convergence flag for articles that light up 5+ dimensions at once. No LLM arithmetic — the model provides qualitative judgments, the code does the numbers.
+5. **Score** — The LLM scores each article against the seven axioms (0–3 per dimension). Python handles the math: composite score (sum, 0–21), relevance tier (deterministic cutoffs), and a convergence flag for articles scoring 2+ on 5 or more dimensions. No LLM arithmetic — the model provides qualitative judgments, the code does the numbers.
 
 6. **Extract Entities** — The LLM identifies companies, people, products, legislation, and other named entities. Stored as structured JSON for thread detection and filtering.
 
@@ -94,7 +94,7 @@ Stages 1–5 are fatal: if any fail, the pipeline stops. Stages 6–8 are non-fa
 
 #### Digest Generation
 
-At 6 AM daily, Sieve generates a digest in Abend's voice. Articles are grouped by tier:
+Once daily (default 8 PM), Sieve generates a digest in Abend's voice. Articles are grouped by tier:
 
 - **Tier 1** (score 15–21): Full deep-dive analysis with dimensional rationales
 - **Tier 2** (score 10–14): Substantive coverage with score context
@@ -102,7 +102,7 @@ At 6 AM daily, Sieve generates a digest in Abend's voice. Articles are grouped b
 - **Tier 4** (score 1–4): Title-only references
 - **Tier 5** (score 0): Excluded
 
-The LLM generates per-article analysis for T1/T2, then synthesizes everything into three sections: The Big Picture, Patterns & Signals, and What Deserves Attention. The result is 1500–2500 words of connected analysis, not just a list of summaries.
+The LLM generates per-article analysis for T1/T2, then synthesizes everything into three sections: The Big Picture, Patterns & Signals, and What Deserves Attention. The result is connected analysis that scales with the day's intake — typically 1500–4000+ words, not just a list of summaries.
 
 #### From Sieve to This Website
 
@@ -111,9 +111,9 @@ The LLM generates per-article analysis for T1/T2, then synthesizes everything in
 - **Digest pages** — Markdown files with YAML frontmatter (date, article count, source count, top topics, the Big Picture text, top scoring articles)
 - **articles.json** — Every scored article with its axiom scores, topics, summary, and source URL. This powers the Reader's client-side filtering and sorting.
 
-Hugo builds static HTML. `rsync` pushes it to a VPS running nginx. The deploy runs automatically after every Sieve pipeline — when new articles are scored, the site updates itself.
+Hugo builds static HTML. `rsync` pushes it to a VPS running nginx. The deploy runs automatically after the daily digest generation — when a new digest is ready, the site updates itself.
 
-The Reader page is ~15KB of vanilla JavaScript. No framework, no build step. It loads articles.json and handles filtering, sorting, pagination, and the axiom score tooltips entirely client-side.
+The Reader page is ~13KB of vanilla JavaScript. No framework, no build step. It loads articles.json and handles filtering, sorting, pagination, and the axiom score tooltips entirely client-side.
 
 #### The Stack
 
@@ -124,7 +124,7 @@ The Reader page is ~15KB of vanilla JavaScript. No framework, no build step. It 
 | LLM inference | Ollama (Llama 3.2, nomic-embed-text) |
 | Static site | Hugo |
 | Styling | Pico CSS + custom overrides |
-| Reader interactivity | Vanilla JavaScript (~15KB) |
+| Reader interactivity | Vanilla JavaScript (~13KB) |
 | Hosting | nginx on a VPS, Cloudflare DNS |
 | Scheduling | APScheduler (hourly pipeline, daily digest) |
 
