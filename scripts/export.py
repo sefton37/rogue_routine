@@ -21,8 +21,8 @@ def parse_args():
     )
     parser.add_argument(
         "--sieve-db",
-        default="/home/kellogg/data/sieve.db",
-        help="Path to Sieve SQLite database (default: /home/kellogg/data/sieve.db)",
+        default=str(Path.home() / "data" / "sieve.db"),
+        help="Path to Sieve SQLite database (default: ~/data/sieve.db)",
     )
     parser.add_argument(
         "--output",

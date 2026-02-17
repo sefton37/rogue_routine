@@ -372,7 +372,8 @@
     if (params.get("source")) elSource.value = params.get("source");
     if (params.get("topic")) elTopic.value = params.get("topic");
     if (params.get("q")) elSearch.value = params.get("q");
-    if (params.get("sort")) sortField = params.get("sort");
+    var validSorts = ["date", "score"].concat(axiomKeys);
+    if (params.get("sort") && validSorts.indexOf(params.get("sort")) !== -1) sortField = params.get("sort");
     if (params.get("dir") === "asc") sortDir = 1;
     if (params.get("page")) currentPage = parseInt(params.get("page")) || 1;
 

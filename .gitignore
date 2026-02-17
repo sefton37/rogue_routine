@@ -5,3 +5,8 @@ resources/
 __pycache__/
 *.pyc
 .DS_Store
+.claude/
+data/articles.json
+data/threads.json
+static/data/articles.json
+static/data/threads.json

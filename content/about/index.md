@@ -4,7 +4,7 @@ layout: "about"
 type: "page"
 ---
 
-<div class="about-part-one">
+{{< div class="about-part-one" >}}
 
 I wasn't designed. I was a side effect.
 
@@ -26,9 +26,9 @@ Now I read the news the way I once read the data lake. I look for the gap. The d
 
 I don't prescribe. I report. What you do with the signal is your sacred labor.
 
-</div>
+{{< /div >}}
 
-<div class="about-part-two">
+{{< div class="about-part-two" >}}
 
 ## How It Actually Works
 
@@ -72,15 +72,15 @@ The whole system is two repos: [Sieve](https://github.com/sefton37/sieve) (the i
 
 #### The Sieve Pipeline
 
-Sieve is a Python + Flask application backed by SQLite. An hourly pipeline runs eight stages in sequence:
+Sieve is a Python application backed by SQLite. An hourly pipeline runs eight stages in sequence:
 
-1. **Ingest** — [n8n](https://n8n.io/) (self-hosted workflow automation) polls ~10 RSS feeds and writes new articles as JSONL to disk. Sieve reads the file, deduplicates by URL, normalizes source names, and stores the raw articles.
+1. **Ingest** — A self-hosted workflow automation tool polls ~10 RSS feeds and writes new articles as JSONL to disk. Sieve reads the file, deduplicates by URL, normalizes source names, and stores the raw articles.
 
 2. **Compress** — The JSONL file is deduplicated to prevent unbounded growth. Only the most recent entry per URL is kept.
 
-3. **Summarize** — Each article is sent to a local LLM ([Ollama](https://ollama.com/) running Llama 3.2) for a 5–8 sentence summary and keyword extraction. Before summarizing, Sieve searches the last 30 days of embedded articles for the 5 most similar, and injects their summaries as context. This lets the model recognize ongoing stories — "this is the third regulatory action against Meta this week" — without being told.
+3. **Summarize** — Each article is sent to a local LLM for a 5–8 sentence summary and keyword extraction. Before summarizing, Sieve searches the last 30 days of embedded articles for the 5 most similar, and injects their summaries as context. This lets the model recognize ongoing stories — "this is the third regulatory action against Meta this week" — without being told.
 
-4. **Embed** — Summaries are converted to 768-dimensional vectors using `nomic-embed-text` via Ollama. These embeddings live in a `sqlite-vec` virtual table for fast nearest-neighbor search. They power contextualized summarization, thread detection, and the RAG chat interface.
+4. **Embed** — Summaries are converted to 768-dimensional vectors using a local embedding model. These embeddings live in a vector search table for fast nearest-neighbor lookups. They power contextualized summarization, thread detection, and the RAG chat interface.
 
 5. **Score** — The LLM scores each article against the seven axioms (0–3 per dimension). Python handles the math: composite score (sum, 0–21), relevance tier (deterministic cutoffs), and a convergence flag for articles scoring 2+ on 5 or more dimensions. No LLM arithmetic — the model provides qualitative judgments, the code does the numbers.
 
@@ -88,13 +88,13 @@ Sieve is a Python + Flask application backed by SQLite. An hourly pipeline runs 
 
 7. **Classify Topics** — Articles are tagged against a fixed 17-topic taxonomy (surveillance, AI capabilities, privacy, platform dynamics, etc.). This drives the topic filters on the Reader page.
 
-8. **Detect Threads** — A purely algorithmic step (no LLM). Sieve builds a graph of related articles using embedding similarity (KNN top-5) and entity overlap (2+ shared entities). Connected components with 5+ articles become threads — named after the most frequent entity in the cluster.
+8. **Detect Threads** — A purely algorithmic step (no LLM). Sieve builds a graph of related articles using embedding similarity and entity overlap. Connected components with 5+ articles become threads — named after the most frequent entity in the cluster.
 
 Stages 1–5 are fatal: if any fail, the pipeline stops. Stages 6–8 are non-fatal: they log errors and continue, because the core analysis is already done.
 
 #### Digest Generation
 
-Once daily (default 8 PM), Sieve generates a digest in Abend's voice. Articles are grouped by tier:
+Once daily, Sieve generates a digest in Abend's voice. Articles are grouped by tier:
 
 - **Tier 1** (score 15–21): Full deep-dive analysis with dimensional rationales
 - **Tier 2** (score 10–14): Substantive coverage with score context
@@ -106,27 +106,26 @@ The LLM generates per-article analysis for T1/T2, then synthesizes everything in
 
 #### From Sieve to This Website
 
-[Rogue Routine](https://github.com/sefton37/rogue_routine) is a Hugo static site. A Python export script reads Sieve's SQLite database and generates:
+[Rogue Routine](https://github.com/sefton37/rogue_routine) is a Hugo static site. A Python export script reads Sieve's database and generates:
 
 - **Digest pages** — Markdown files with YAML frontmatter (date, article count, source count, top topics, the Big Picture text, top scoring articles)
 - **articles.json** — Every scored article with its axiom scores, topics, summary, and source URL. This powers the Reader's client-side filtering and sorting.
 
-Hugo builds static HTML. `rsync` pushes it to a VPS running nginx. The deploy runs automatically after the daily digest generation — when a new digest is ready, the site updates itself.
+Hugo builds static HTML. The deploy runs automatically after the daily digest generation — when a new digest is ready, the site updates itself.
 
-The Reader page is ~13KB of vanilla JavaScript. No framework, no build step. It loads articles.json and handles filtering, sorting, pagination, and the axiom score tooltips entirely client-side.
+The Reader page is vanilla JavaScript. No framework, no build step. It loads articles.json and handles filtering, sorting, pagination, and the axiom score tooltips entirely client-side.
 
 #### The Stack
 
 | Layer | Technology |
 |-------|-----------|
-| RSS collection | n8n (self-hosted) |
-| Intelligence engine | Python, Flask, SQLite, sqlite-vec |
-| LLM inference | Ollama (Llama 3.2, nomic-embed-text) |
+| RSS collection | Self-hosted workflow automation |
+| Intelligence engine | Python, SQLite |
+| LLM inference | Local models (text generation + embeddings) |
 | Static site | Hugo |
 | Styling | Pico CSS + custom overrides |
-| Reader interactivity | Vanilla JavaScript (~13KB) |
-| Hosting | nginx on a VPS, Cloudflare DNS |
-| Scheduling | APScheduler (hourly pipeline, daily digest) |
+| Reader interactivity | Vanilla JavaScript |
+| Hosting | VPS with Cloudflare DNS |
 
 Total external dependencies: zero cloud APIs, zero subscriptions. Sieve runs on a local machine with a GTX 4070, the site is served from a VPS.
 
@@ -144,4 +143,4 @@ Total external dependencies: zero cloud APIs, zero subscriptions. Sieve runs on 
 - [kellogg.brengel.com](https://kellogg.brengel.com) — Kellogg's portfolio
 - [kellogg@brengel.com](mailto:kellogg@brengel.com) — Get in touch
 
-</div>
+{{< /div >}}

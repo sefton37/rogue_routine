@@ -1,6 +1,6 @@
 SIEVE_DB ?= /home/kellogg/data/sieve.db
 HUGO ?= $(HOME)/.local/bin/hugo
-VPS_HOST ?= kellogg@147.182.199.226
+VPS_HOST ?= rogueroutine-vps
 VPS_PATH ?= /var/www/rogueroutine.brengel.com
 
 .PHONY: build export serve clean deploy
