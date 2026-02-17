@@ -223,17 +223,18 @@
     }
     elList.innerHTML = html;
 
-    // Attach expand handlers
+    // Attach expand handlers to score area
     var items = elList.querySelectorAll(".article-item");
     for (var i = 0; i < items.length; i++) {
       (function (item) {
-        var titleEl = item.querySelector(".article-title");
-        titleEl.style.cursor = "pointer";
-        titleEl.addEventListener("click", function (e) {
-          e.preventDefault();
-          var detail = item.querySelector(".article-detail");
-          if (detail) detail.classList.toggle("open");
-        });
+        var scoreWrap = item.querySelector(".article-score-wrap");
+        if (scoreWrap) {
+          scoreWrap.style.cursor = "pointer";
+          scoreWrap.addEventListener("click", function () {
+            var detail = item.querySelector(".article-detail");
+            if (detail) detail.classList.toggle("open");
+          });
+        }
       })(items[i]);
     }
 
@@ -289,7 +290,7 @@
     }
 
     return '<li class="article-item">' +
-      '<div class="article-title"><a href="#">' + escapeHtml(a.title) + "</a></div>" +
+      '<div class="article-title"><a href="' + escapeHtml(a.url) + '" rel="noopener" target="_blank">' + escapeHtml(a.title) + "</a></div>" +
       '<div class="article-meta">' +
       '<span class="article-score-wrap">' +
       '<span class="article-score">Score: ' + (a.overall_score || 0) + "</span>" +

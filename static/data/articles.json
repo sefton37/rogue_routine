@@ -1,7 +1,54 @@
 {
-  "generated_at": "2026-02-16T23:07:40.384889+00:00",
-  "total_articles": 680,
+  "generated_at": "2026-02-17T12:28:45.582847+00:00",
+  "total_articles": 682,
   "articles": [
+    {
+      "id": 735,
+      "title": "Have money, will travel: a16z\u2019s hunt for the next European unicorn",
+      "source": "TechCrunch",
+      "url": "https://techcrunch.com/2026/02/16/have-money-will-travel-a16zs-hunt-for-the-next-european-unicorn/",
+      "published": "2026-02-16",
+      "overall_score": 10,
+      "axiom_scores": {
+        "attention_economy": 3,
+        "data_sovereignty": 2,
+        "power_consolidation": 1,
+        "coercion_cooperation": 0,
+        "fear_trust": 0,
+        "democratization": 2,
+        "systemic_design": 2
+      },
+      "topics": [
+        "startup_funding",
+        "platform_dynamics"
+      ],
+      "digest_date": "2026-02-17",
+      "summary": "Andreessen Horowitz (a16z) is actively seeking European startups to invest in, with a focus on identifying potential unicorns before they gain international attention. The firm's partner, Gabriel Vasquez, revealed that he took nine flights from NYC to Stockholm in one year to scout for promising companies. One such startup, Dentio, has received $2.3 million in pre-seed funding from a16z and uses AI to help dentists with administrative tasks. Dentio's founders, who met at the Stockholm School of Economics, believe their product can be scaled internationally despite Europe's fragmented healthcare systems. The investment is part of a16z's broader strategy to invest in emerging markets and identify innovative companies before they become too expensive for local investors."
+    },
+    {
+      "id": 734,
+      "title": "Cohere launches a family of open multilingual models",
+      "source": "TechCrunch",
+      "url": "https://techcrunch.com/2026/02/17/cohere-launches-a-family-of-open-multilingual-models/",
+      "published": "2026-02-17",
+      "overall_score": 12,
+      "axiom_scores": {
+        "attention_economy": 2,
+        "data_sovereignty": 3,
+        "power_consolidation": 0,
+        "coercion_cooperation": 2,
+        "fear_trust": 0,
+        "democratization": 3,
+        "systemic_design": 2
+      },
+      "topics": [
+        "ai_capabilities",
+        "open_source",
+        "platform_dynamics"
+      ],
+      "digest_date": "2026-02-17",
+      "summary": "Cohere has launched a family of open multilingual models called Tiny Aya, which support over 70 languages and can run on everyday devices without an internet connection. The models are available for download on HuggingFace and the Cohere Platform, and are ideal for researchers and developers building apps for audiences that speak native languages. The company has also released training and evaluation datasets on HuggingFace and plans to release a technical report detailing its training methodology. Tiny Aya is designed to be flexible starting points for further adaptation and research, with each model developing stronger linguistic grounding and cultural nuance. This move is seen as significant in the AI industry, particularly in linguistically diverse countries like India where offline-friendly capabilities can open up new applications and use cases."
+    },
     {
       "id": 732,
       "title": "All the important news from the ongoing India AI Impact Summit",
