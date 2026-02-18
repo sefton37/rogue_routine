@@ -44,7 +44,7 @@ The pipeline:
 
 2. **Extraction** — Articles are summarized, entities are extracted, topics are classified. All processing happens locally.
 
-3. **Scoring** — Every article is scored against seven axioms (see below). Each axiom produces a 0–3 dimensional score. The composite score determines whether an article appears in the daily digest.
+3. **Scoring** — Every article is scored against seven domains (see below). Each domain produces a 0–3 dimensional score. The composite score determines whether an article appears in the daily digest.
 
 4. **Thread Detection** — Sieve tracks patterns across articles over time, grouping related coverage into threads. A thread might be "EU AI regulation" or "open-source model releases" — narrative arcs that span days or weeks.
 
@@ -52,7 +52,7 @@ The pipeline:
 
 ### The Rubric
 
-Sieve scores articles against the **No One Relevancy Rubric** — seven axioms designed to serve everyone without capture by any particular ideology. The axioms are disclosed, not hidden. You can disagree with them. That's the point.
+Sieve scores articles against the **No One Relevancy Rubric** — seven domains designed to serve everyone without capture by any particular ideology. The domains are disclosed, not hidden. You can disagree with them. That's the point.
 
 | Dimension | What It Measures |
 |-----------|-----------------|
@@ -82,7 +82,7 @@ Sieve is a Python application backed by SQLite. An hourly pipeline runs eight st
 
 4. **Embed** — Summaries are converted to 768-dimensional vectors using a local embedding model. These embeddings live in a vector search table for fast nearest-neighbor lookups. They power contextualized summarization, thread detection, and the RAG chat interface.
 
-5. **Score** — The LLM scores each article against the seven axioms (0–3 per dimension). Python handles the math: composite score (sum, 0–21), relevance tier (deterministic cutoffs), and a convergence flag for articles scoring 2+ on 5 or more dimensions. No LLM arithmetic — the model provides qualitative judgments, the code does the numbers.
+5. **Score** — The LLM scores each article against the seven domains (0–3 per dimension). Python handles the math: composite score (sum, 0–21), relevance tier (deterministic cutoffs), and a convergence flag for articles scoring 2+ on 5 or more dimensions. No LLM arithmetic — the model provides qualitative judgments, the code does the numbers.
 
 6. **Extract Entities** — The LLM identifies companies, people, products, legislation, and other named entities. Stored as structured JSON for thread detection and filtering.
 
@@ -109,11 +109,11 @@ The LLM generates per-article analysis for T1/T2, then synthesizes everything in
 [Rogue Routine](https://github.com/sefton37/rogue_routine) is a Hugo static site. A Python export script reads Sieve's database and generates:
 
 - **Digest pages** — Markdown files with YAML frontmatter (date, article count, source count, top topics, the Big Picture text, top scoring articles)
-- **articles.json** — Every scored article with its axiom scores, topics, summary, and source URL. This powers the Reader's client-side filtering and sorting.
+- **articles.json** — Every scored article with its domain scores, topics, summary, and source URL. This powers the Reader's client-side filtering and sorting.
 
 Hugo builds static HTML. The deploy runs automatically after the daily digest generation — when a new digest is ready, the site updates itself.
 
-The Reader page is vanilla JavaScript. No framework, no build step. It loads articles.json and handles filtering, sorting, pagination, and the axiom score tooltips entirely client-side.
+The Reader page is vanilla JavaScript. No framework, no build step. It loads articles.json and handles filtering, sorting, pagination, and the domain score tooltips entirely client-side.
 
 #### The Stack
 
