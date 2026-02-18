@@ -190,8 +190,8 @@
         va = (a.axiom_scores && a.axiom_scores[sortField]) || 0;
         vb = (b.axiom_scores && b.axiom_scores[sortField]) || 0;
       }
-      if (va < vb) return sortDir;
-      if (va > vb) return -sortDir;
+      if (va < vb) return -sortDir;
+      if (va > vb) return sortDir;
       return 0;
     });
 
