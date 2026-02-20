@@ -1,0 +1,18 @@
+{{ define "main" }}
+<h1>The Seven Domains</h1>
+<p>Sieve scores every article against the <strong>No One Relevancy Rubric</strong> — seven domains designed to surface structural patterns in tech news without capture by any particular ideology. The domains are disclosed, not hidden.</p>
+
+<div class="domain-grid">
+  {{ range .Pages }}
+  <a href="{{ .Permalink }}" class="domain-card">
+    <h2>{{ .Title }}</h2>
+    <p>{{ .Params.tagline }}</p>
+  </a>
+  {{ end }}
+</div>
+
+<div class="topic-nav">
+  <a href="/reader/">Browse All Articles in the Reader</a>
+  <a href="/about/">Learn How Sieve Works</a>
+</div>
+{{ end }}

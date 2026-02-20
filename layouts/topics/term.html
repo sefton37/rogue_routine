@@ -1,0 +1,15 @@
+{{ define "main" }}
+<h1>{{ .Title }}</h1>
+<p class="muted">Daily signals tagged with {{ .Title }}. Browse digests where this topic appeared prominently in the day's coverage.</p>
+
+<div class="topic-digest-list">
+  {{ range .Pages.ByDate.Reverse }}
+  {{ partial "digest-card.html" . }}
+  {{ end }}
+</div>
+
+<div class="topic-nav">
+  <a href="/topics/">← All Topics</a>
+  <a href="/reader/">Browse All Articles</a>
+</div>
+{{ end }}

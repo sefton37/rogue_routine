@@ -1,0 +1,13 @@
+{{ define "main" }}
+<h1>Topics</h1>
+<p class="muted">Articles and digests organized by topic. Each topic aggregates daily signals where that subject appeared prominently.</p>
+
+<div class="topic-grid">
+  {{ range .Data.Terms.Alphabetical }}
+  <a href="{{ .Page.Permalink }}" class="topic-card">
+    <h2>{{ .Page.Title }}</h2>
+    <span class="topic-count">{{ .Count }} {{ if eq .Count 1 }}digest{{ else }}digests{{ end }}</span>
+  </a>
+  {{ end }}
+</div>
+{{ end }}

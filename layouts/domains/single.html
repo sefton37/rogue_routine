@@ -1,0 +1,19 @@
+{{ define "main" }}
+<article class="domain-page">
+  <header>
+    <h1>{{ .Title }}</h1>
+    {{ with .Params.tagline }}<p class="muted domain-tagline">{{ . }}</p>{{ end }}
+  </header>
+
+  <div class="domain-content">
+    {{ .Content }}
+  </div>
+
+  <div class="domain-cta">
+    {{ with .Params.reader_filter }}
+    <a href="/reader/?axioms={{ . }}" class="domain-explore-btn">Explore {{ $.Title }} Articles in the Reader →</a>
+    {{ end }}
+    <a href="/domains/">← All Domains</a>
+  </div>
+</article>
+{{ end }}

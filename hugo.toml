@@ -6,8 +6,11 @@ title = "Rogue Routine"
   pagerSize = 20
 
 [params]
-  description = "Sovereign news intelligence, powered by Sieve."
+  description = "AI-powered tech news intelligence. Daily analysis scored across 7 domains: attention economy, data sovereignty, power consolidation, democratization, and more. Powered by Sieve."
   author = "Abend"
+
+[taxonomies]
+  topic = "topics"
 
 [outputs]
   home = ["HTML", "RSS"]

@@ -61,6 +61,37 @@ def parse_args():
     return parser.parse_args()
 
 
+TOPIC_LABELS = {
+    "attention_economy": "Attention Economy",
+    "data_sovereignty": "Data Sovereignty",
+    "power_consolidation": "Power Consolidation",
+    "coercion_cooperation": "Coercion vs. Cooperation",
+    "fear_trust": "Fear vs. Trust",
+    "democratization": "Democratization",
+    "systemic_design": "Systemic Design",
+    "platform_dynamics": "Platform Dynamics",
+    "ai_capabilities": "AI Capabilities",
+    "content_moderation": "Content Moderation",
+    "surveillance": "Surveillance",
+    "startup_funding": "Startup Funding",
+    "labor_displacement": "Labor Displacement",
+    "privacy": "Privacy",
+    "hardware": "Hardware",
+    "cybersecurity": "Cybersecurity",
+    "infrastructure": "Infrastructure",
+    "crypto": "Crypto",
+    "ai_regulation": "AI Regulation",
+    "open_source": "Open Source",
+    "acquisitions": "Acquisitions",
+    "other": "Other",
+}
+
+
+def humanize_topic(topic: str) -> str:
+    """Convert 'platform_dynamics' to 'Platform Dynamics'."""
+    return TOPIC_LABELS.get(topic, topic.replace("_", " ").title())
+
+
 def extract_date(datetime_str: Optional[str]) -> Optional[str]:
     """Extract YYYY-MM-DD from ISO datetime string."""
     if not datetime_str:
@@ -302,14 +333,24 @@ def export_digest_markdown(
         summary = clean_bp[:200].rsplit(" ", 1)[0] + "..." if len(clean_bp) > 200 else clean_bp
     else:
         summary = extract_summary(content)
+
+    # Human-readable topic labels for Hugo taxonomy
+    topics_human = [humanize_topic(t) for t in top_topics]
+
+    # Keyword-enriched title from top topics
+    topic_labels = [humanize_topic(t) for t in top_topics[:3]]
+    date_obj = datetime.strptime(digest_date, "%Y-%m-%d")
+    formatted_date = date_obj.strftime("%b %-d, %Y")
+    title = f"{', '.join(topic_labels)} — Daily Signal, {formatted_date}"
+
     frontmatter_data = {
-        "title": f"Daily Signal — {digest_date}",
+        "title": title,
         "date": digest_date,
         "summary": summary,
         "big_picture": big_picture,
         "article_count": len(articles),
         "source_count": source_count,
-        "top_topics": top_topics,
+        "topics": topics_human,
         "top_scoring_articles": top_scoring_articles,
     }
 

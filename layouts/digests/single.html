@@ -6,6 +6,11 @@
     <div class="digest-meta">
       {{ with .Params.article_count }}{{ . }} articles analyzed{{ end }}{{ with .Params.source_count }} across {{ . }} sources{{ end }}
     </div>
+    {{ with .Params.topics }}
+    <div class="thread-tags">
+      {{ range . }}<a href="/topics/{{ . | urlize }}/" class="thread-tag">{{ . }}</a>{{ end }}
+    </div>
+    {{ end }}
   </header>
 
   <div class="digest-content">

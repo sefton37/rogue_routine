@@ -57,11 +57,30 @@
 
 <div class="reader-pagination" id="reader-pagination"></div>
 
+<!-- Static article list for search engine crawlers -->
+<div id="static-articles">
+  <h2>Top Scored Articles</h2>
+  <p>{{ with .Site.Data.articles }}{{ .total_articles }}{{ end }} articles scored by Sieve across 7 domains: Attention Economy, Data Sovereignty, Power Consolidation, Coercion vs. Cooperation, Fear vs. Trust, Democratization, and Systemic Design.</p>
+  {{ $sorted := sort .Site.Data.articles.articles "overall_score" "desc" }}
+  {{ range first 50 $sorted }}
+  <article class="static-article-item">
+    <h3><a href="{{ .url }}" rel="noopener">{{ .title }}</a></h3>
+    <div class="static-article-meta">
+      <span>{{ .source }}</span>
+      {{ with .published }} · <time datetime="{{ . }}">{{ . }}</time>{{ end }}
+      · Score: {{ .overall_score }}
+    </div>
+    {{ with .summary }}<p>{{ . }}</p>{{ end }}
+  </article>
+  {{ end }}
+</div>
+
 <noscript>
-  <p>The Reader requires JavaScript to filter and sort {{ with .Site.Data.articles }}{{ .total_articles }}{{ end }} articles.</p>
+  <p>The Reader requires JavaScript for interactive filtering and sorting.</p>
 </noscript>
 {{ end }}
 
 {{ define "scripts" }}
+<script>document.getElementById('static-articles').hidden=true</script>
 <script src="/js/reader.js"></script>
 {{ end }}
