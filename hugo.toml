@@ -10,7 +10,7 @@ title = "Rogue Routine"
   author = "Abend"
 
 [outputs]
-  home = ["HTML"]
+  home = ["HTML", "RSS"]
 
 [markup]
   [markup.goldmark]
