@@ -276,6 +276,51 @@ def get_articles_for_digest_date(
     return articles
 
 
+def _strip_inline_blockquote_attributions(content: str) -> str:
+    """Strip redundant inline attributions from blockquotes.
+
+    When the LLM writes:
+        > "quote text" — Source Name
+        — [Source Name](url)
+
+    the source appears twice. This strips the inline '— Source Name' from the
+    blockquote line when a proper linked attribution line already follows.
+    """
+    lines = content.split('\n')
+    result = []
+    i = 0
+    while i < len(lines):
+        line = lines[i]
+        if line.strip().startswith('>'):
+            # Collect consecutive blockquote lines
+            quote_lines = [line]
+            i += 1
+            while i < len(lines) and lines[i].strip().startswith('>'):
+                quote_lines.append(lines[i])
+                i += 1
+            # Check if next non-empty line is a linked attribution
+            j = i
+            while j < len(lines) and lines[j].strip() == '':
+                j += 1
+            has_attr = j < len(lines) and bool(
+                re.match(r'^[\u2014\u2013\-]{1,2}\s*\[', lines[j].strip())
+            )
+            if has_attr:
+                # Strip inline "— Source" from last blockquote line
+                last = quote_lines[-1]
+                cleaned = re.sub(
+                    r'\s*[\u2014\u2013]\s*(?!\[)[A-Z][\w\s&\'\-\.]+\s*$',
+                    '', last,
+                )
+                if cleaned != last:
+                    quote_lines[-1] = cleaned
+            result.extend(quote_lines)
+        else:
+            result.append(line)
+            i += 1
+    return '\n'.join(result)
+
+
 def export_digest_markdown(
     conn: sqlite3.Connection,
     digest_date: str,
@@ -355,6 +400,11 @@ def export_digest_markdown(
     }
 
     frontmatter = format_yaml_frontmatter(frontmatter_data)
+
+    # Strip redundant inline attributions from blockquotes
+    # LLM sometimes writes: > "quote" — Source\n— [Source](url)
+    # which renders the source name twice
+    content = _strip_inline_blockquote_attributions(content)
 
     # Combine frontmatter and content
     full_content = f"{frontmatter}\n\n{content}\n"

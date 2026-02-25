@@ -2,24 +2,17 @@
 <h1>Reader</h1>
 <p class="muted">Browse all articles scored by Sieve. Filter, sort, and explore.</p>
 
-<div class="reader-controls" id="reader-controls">
-  <label>
-    Source
+<div class="reader-toolbar" id="reader-controls">
+  <label class="reader-field">
+    <span class="reader-field-label">Source</span>
     <select id="filter-source"><option value="">All sources</option></select>
   </label>
-  <label id="topic-filter-label">
-    Topic
+  <label class="reader-field" id="topic-filter-label">
+    <span class="reader-field-label">Topic</span>
     <select id="filter-topic"><option value="">All topics</option></select>
   </label>
-  <label>
-    Search
-    <input type="search" id="filter-search" placeholder="Search titles...">
-  </label>
-</div>
-
-<div class="reader-sort" id="reader-sort">
-  <label class="sort-label">
-    Sort by
+  <label class="reader-field">
+    <span class="reader-field-label">Sort by</span>
     <select id="sort-field">
       <option value="date">Date</option>
       <option value="score">Overall Score</option>
@@ -32,12 +25,19 @@
       <option value="systemic_design">Systemic Design</option>
     </select>
   </label>
-  <button id="sort-dir" class="sort-dir-btn">↓ Newest</button>
+  <div class="reader-field">
+    <span class="reader-field-label">Order</span>
+    <button id="sort-dir" class="reader-btn sort-dir-btn">↓ Newest</button>
+  </div>
+  <label class="reader-field reader-field-search">
+    <span class="reader-field-label">Search</span>
+    <input type="search" id="filter-search" placeholder="Search articles...">
+  </label>
 </div>
 
-<details class="axiom-filter-wrap" id="axiom-filter">
+<details class="domain-filter-wrap" id="domain-filter">
   <summary class="muted">Filter by domain</summary>
-  <div class="axiom-checkboxes">
+  <div class="domain-checkboxes">
     <label><input type="checkbox" value="attention_economy"> Attention Economy</label>
     <label><input type="checkbox" value="data_sovereignty"> Data Sovereignty</label>
     <label><input type="checkbox" value="power_consolidation"> Power Consolidation</label>
@@ -46,10 +46,13 @@
     <label><input type="checkbox" value="democratization"> Democratization</label>
     <label><input type="checkbox" value="systemic_design"> Systemic Design</label>
   </div>
-  <p class="muted axiom-filter-hint">Articles must score &gt; 0 on all selected domains.</p>
+  <p class="muted domain-filter-hint">Articles must score &gt; 0 on all selected domains.</p>
 </details>
 
-<div class="reader-status" id="reader-status"></div>
+<div class="reader-status-row">
+  <div class="reader-status" id="reader-status"></div>
+  <button class="reader-clear-filters" id="clear-filters" hidden>Clear all filters</button>
+</div>
 
 <ul class="article-list" id="article-list">
   <li class="reader-loading">Loading articles</li>
@@ -81,5 +84,6 @@
 {{ end }}
 
 {{ define "scripts" }}
-<script src="/js/reader.js"></script>
+{{ $readerJS := resources.Get "js/reader.js" | fingerprint }}
+<script src="{{ $readerJS.RelPermalink }}"></script>
 {{ end }}

@@ -7,9 +7,9 @@
   var currentPage = 1;
   var sortField = "date";
   var sortDir = -1; // -1 = descending
-  var selectedAxioms = [];
+  var selectedDomains = [];
 
-  var axiomKeys = ["attention_economy", "data_sovereignty", "power_consolidation",
+  var domainKeys = ["attention_economy", "data_sovereignty", "power_consolidation",
     "coercion_cooperation", "fear_trust", "democratization", "systemic_design"];
 
   var elList = document.getElementById("article-list");
@@ -20,9 +20,10 @@
   var elSearch = document.getElementById("filter-search");
   var elSortSelect = document.getElementById("sort-field");
   var elSortDir = document.getElementById("sort-dir");
-  var elAxiomFilter = document.getElementById("axiom-filter");
+  var elDomainFilter = document.getElementById("domain-filter");
+  var elClearFilters = document.getElementById("clear-filters");
 
-  var axiomLabels = {
+  var domainLabels = {
     attention_economy: "Attention Economy",
     data_sovereignty: "Data Sovereignty",
     power_consolidation: "Power Consolidation",
@@ -74,11 +75,14 @@
     elSortSelect.addEventListener("change", onSortChange);
     elSortDir.addEventListener("click", onSortDirToggle);
 
-    // Axiom filter checkboxes
-    var checks = elAxiomFilter.querySelectorAll("input[type=checkbox]");
+    // Domain filter checkboxes
+    var checks = elDomainFilter.querySelectorAll("input[type=checkbox]");
     for (var i = 0; i < checks.length; i++) {
-      checks[i].addEventListener("change", onAxiomFilterChange);
+      checks[i].addEventListener("change", onDomainFilterChange);
     }
+
+    // Clear all filters
+    elClearFilters.addEventListener("click", onClearFilters);
   }
 
   function populateFilters() {
@@ -146,15 +150,46 @@
     }
   }
 
-  function onAxiomFilterChange() {
-    selectedAxioms = [];
-    var checks = elAxiomFilter.querySelectorAll("input[type=checkbox]:checked");
+  function onDomainFilterChange() {
+    selectedDomains = [];
+    var checks = elDomainFilter.querySelectorAll("input[type=checkbox]:checked");
     for (var i = 0; i < checks.length; i++) {
-      selectedAxioms.push(checks[i].value);
+      selectedDomains.push(checks[i].value);
     }
     currentPage = 1;
     applyFilters();
     pushURL();
+  }
+
+  function onClearFilters() {
+    elSource.value = "";
+    elTopic.value = "";
+    elSearch.value = "";
+    sortField = "date";
+    sortDir = -1;
+    selectedDomains = [];
+    var checks = elDomainFilter.querySelectorAll("input[type=checkbox]");
+    for (var i = 0; i < checks.length; i++) {
+      checks[i].checked = false;
+    }
+    elSortSelect.value = "date";
+    updateSortDirBtn();
+    currentPage = 1;
+    applyFilters();
+    pushURL();
+  }
+
+  function hasActiveFilters() {
+    return elSource.value || elTopic.value || elSearch.value || selectedDomains.length > 0;
+  }
+
+  function updateClearButton() {
+    elClearFilters.hidden = !hasActiveFilters();
+  }
+
+  function setSourceFilter(source) {
+    elSource.value = source;
+    onFilter();
   }
 
   function applyFilters() {
@@ -165,11 +200,17 @@
     filtered = articles.filter(function (a) {
       if (src && a.source !== src) return false;
       if (topic && (!a.topics || a.topics.indexOf(topic) === -1)) return false;
-      if (search && a.title.toLowerCase().indexOf(search) === -1) return false;
-      // Axiom filter: article must score > 0 on all selected axioms
-      if (selectedAxioms.length > 0 && a.axiom_scores) {
-        for (var i = 0; i < selectedAxioms.length; i++) {
-          if (!a.axiom_scores[selectedAxioms[i]] || a.axiom_scores[selectedAxioms[i]] <= 0) {
+      if (search) {
+        var haystack = a.title.toLowerCase() +
+          " " + (a.summary || "").toLowerCase() +
+          " " + (a.source || "").toLowerCase() +
+          " " + (a.topics ? a.topics.join(" ").toLowerCase() : "");
+        if (haystack.indexOf(search) === -1) return false;
+      }
+      // Domain filter: article must score > 0 on all selected domains
+      if (selectedDomains.length > 0 && a.axiom_scores) {
+        for (var i = 0; i < selectedDomains.length; i++) {
+          if (!a.axiom_scores[selectedDomains[i]] || a.axiom_scores[selectedDomains[i]] <= 0) {
             return false;
           }
         }
@@ -186,7 +227,7 @@
         va = a.published || "";
         vb = b.published || "";
       } else {
-        // Sorting by an individual axiom
+        // Sorting by an individual domain
         va = (a.axiom_scores && a.axiom_scores[sortField]) || 0;
         vb = (b.axiom_scores && b.axiom_scores[sortField]) || 0;
       }
@@ -211,9 +252,14 @@
       (total !== articles.length ? " (filtered from " + articles.length + ")" : "") +
       " · Page " + currentPage + " of " + totalPages;
 
+    updateClearButton();
+
     if (page.length === 0) {
-      elList.innerHTML = '<li class="muted">No articles match your filters.</li>';
+      elList.innerHTML = '<li class="muted">No articles match your filters. ' +
+        'Try broadening your search or <button class="reader-clear-filters" id="clear-inline">clear all filters</button>.</li>';
       elPagination.innerHTML = "";
+      var inlineClear = document.getElementById("clear-inline");
+      if (inlineClear) inlineClear.addEventListener("click", onClearFilters);
       return;
     }
 
@@ -223,7 +269,7 @@
     }
     elList.innerHTML = html;
 
-    // Attach expand handlers to score area
+    // Attach expand handlers to score area (click toggles detail + tooltip)
     var items = elList.querySelectorAll(".article-item");
     for (var i = 0; i < items.length; i++) {
       (function (item) {
@@ -233,9 +279,27 @@
           scoreWrap.addEventListener("click", function () {
             var detail = item.querySelector(".article-detail");
             if (detail) detail.classList.toggle("open");
+            // Close any other open tooltips
+            var allTooltips = elList.querySelectorAll(".score-tooltip.visible");
+            for (var j = 0; j < allTooltips.length; j++) {
+              if (allTooltips[j].parentNode !== scoreWrap) {
+                allTooltips[j].classList.remove("visible");
+              }
+            }
+            var tooltip = scoreWrap.querySelector(".score-tooltip");
+            if (tooltip) tooltip.classList.toggle("visible");
           });
         }
       })(items[i]);
+    }
+
+    // Attach source filter handlers
+    var sourceEls = elList.querySelectorAll(".article-source[data-source]");
+    for (var i = 0; i < sourceEls.length; i++) {
+      sourceEls[i].addEventListener("click", function (e) {
+        var src = e.currentTarget.getAttribute("data-source");
+        if (src) setSourceFilter(src);
+      });
     }
 
     renderPagination(totalPages);
@@ -244,14 +308,16 @@
   function renderArticle(a) {
     var bars = "";
     if (a.axiom_scores) {
-      bars = '<span class="axiom-bars">';
-      for (var i = 0; i < axiomKeys.length; i++) {
-        var v = a.axiom_scores[axiomKeys[i]] || 0;
-        var h = Math.max(2, (v / 3) * 16);
-        bars += '<span class="axiom-bar" style="height:' + h + 'px" title="' +
-          axiomLabels[axiomKeys[i]] + ': ' + v + '/3"></span>';
+      bars = '<svg width="27" height="16" style="vertical-align:middle;margin-left:4px" role="img" aria-label="Domain scores">';
+      for (var i = 0; i < domainKeys.length; i++) {
+        var v = a.axiom_scores[domainKeys[i]] || 0;
+        var h = Math.max(2, Math.round((v / 3) * 16));
+        var x = i * 4;
+        bars += '<rect x="' + x + '" y="' + (16 - h) + '" width="3" height="' + h +
+          '" rx="0.5" fill="var(--rr-score-bar, #c05a2c)"><title>' +
+          domainLabels[domainKeys[i]] + ': ' + v + '/3</title></rect>';
       }
-      bars += "</span>";
+      bars += '</svg>';
     }
 
     var summary = "";
@@ -270,10 +336,10 @@
 
     var detail = '<div class="article-detail">';
     if (a.axiom_scores) {
-      for (var i = 0; i < axiomKeys.length; i++) {
-        var v = a.axiom_scores[axiomKeys[i]] || 0;
-        detail += '<div class="axiom-row"><span class="axiom-label">' +
-          axiomLabels[axiomKeys[i]] + '</span><span class="axiom-value">' + v + '/3</span></div>';
+      for (var i = 0; i < domainKeys.length; i++) {
+        var v = a.axiom_scores[domainKeys[i]] || 0;
+        detail += '<div class="domain-row"><span class="domain-label">' +
+          domainLabels[domainKeys[i]] + '</span><span class="domain-value">' + v + '/3</span></div>';
       }
     }
     detail += "</div>";
@@ -281,10 +347,10 @@
     var tooltip = "";
     if (a.axiom_scores) {
       tooltip = '<div class="score-tooltip">';
-      for (var i = 0; i < axiomKeys.length; i++) {
-        var v = a.axiom_scores[axiomKeys[i]] || 0;
+      for (var i = 0; i < domainKeys.length; i++) {
+        var v = a.axiom_scores[domainKeys[i]] || 0;
         tooltip += '<div class="score-tooltip-row"><span>' +
-          axiomLabels[axiomKeys[i]] + '</span><span class="score-tooltip-val">' + v + '/3</span></div>';
+          domainLabels[domainKeys[i]] + '</span><span class="score-tooltip-val">' + v + '/3</span></div>';
       }
       tooltip += '</div>';
     }
@@ -297,8 +363,8 @@
       bars +
       tooltip +
       '</span>' +
-      '<a class="article-source" href="' + escapeHtml(a.url) +
-        '" rel="noopener" target="_blank">' + escapeHtml(a.source || "") + "</a>" +
+      '<span class="article-source" data-source="' + escapeHtml(a.source || "") +
+        '">' + escapeHtml(a.source || "") + "</span>" +
       "<span>" + (a.published || "") + "</span>" +
       "</div>" +
       tags +
@@ -348,7 +414,7 @@
           currentPage = p;
           render();
           pushURL();
-          window.scrollTo(0, 0);
+          elList.scrollIntoView({ behavior: "smooth" });
         }
       });
     }
@@ -362,7 +428,7 @@
     if (sortField !== "date") params.set("sort", sortField);
     if (sortDir !== -1) params.set("dir", "asc");
     if (currentPage > 1) params.set("page", currentPage);
-    if (selectedAxioms.length > 0) params.set("axioms", selectedAxioms.join(","));
+    if (selectedDomains.length > 0) params.set("domains", selectedDomains.join(","));
     var qs = params.toString();
     history.replaceState(null, "", qs ? "?" + qs : window.location.pathname);
   }
@@ -372,17 +438,17 @@
     if (params.get("source")) elSource.value = params.get("source");
     if (params.get("topic")) elTopic.value = params.get("topic");
     if (params.get("q")) elSearch.value = params.get("q");
-    var validSorts = ["date", "score"].concat(axiomKeys);
+    var validSorts = ["date", "score"].concat(domainKeys);
     if (params.get("sort") && validSorts.indexOf(params.get("sort")) !== -1) sortField = params.get("sort");
     if (params.get("dir") === "asc") sortDir = 1;
     if (params.get("page")) currentPage = parseInt(params.get("page")) || 1;
 
-    // Restore axiom filter from URL
-    if (params.get("axioms")) {
-      selectedAxioms = params.get("axioms").split(",");
-      var checks = elAxiomFilter.querySelectorAll("input[type=checkbox]");
+    // Restore domain filter from URL
+    if (params.get("domains")) {
+      selectedDomains = params.get("domains").split(",");
+      var checks = elDomainFilter.querySelectorAll("input[type=checkbox]");
       for (var i = 0; i < checks.length; i++) {
-        checks[i].checked = selectedAxioms.indexOf(checks[i].value) !== -1;
+        checks[i].checked = selectedDomains.indexOf(checks[i].value) !== -1;
       }
     }
 

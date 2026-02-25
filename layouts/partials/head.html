@@ -29,10 +29,16 @@
 <!-- Favicons -->
 <link rel="icon" href="/favicon.ico" sizes="32x32">
 <link rel="icon" href="/favicon.png" type="image/png" sizes="192x192">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
 <!-- Stylesheets -->
-<link rel="stylesheet" href="/css/pico.min.css">
-<link rel="stylesheet" href="/css/site.css">
+{{ $pico := resources.Get "css/pico.min.css" | fingerprint }}
+{{ $site := resources.Get "css/site.css" | fingerprint }}
+<link rel="stylesheet" href="{{ $pico.RelPermalink }}">
+<link rel="stylesheet" href="{{ $site.RelPermalink }}">
+
+<!-- Analytics — self-hosted, cookie-free page counter -->
+<script defer src="https://analytics.brengel.com/beacon.js" data-site="rogueroutine"></script>
 
 <!-- Structured Data -->
 {{ if .IsHome }}

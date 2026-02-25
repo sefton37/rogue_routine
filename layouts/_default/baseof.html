@@ -5,12 +5,14 @@
   {{ block "head" . }}{{ end }}
 </head>
 <body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
   {{ partial "nav.html" . }}
-  <main>
+  <main id="main-content">
     {{ block "main" . }}{{ end }}
   </main>
   {{ partial "footer.html" . }}
-  <script src="/js/site.js"></script>
+  {{ $siteJS := resources.Get "js/site.js" | fingerprint }}
+  <script src="{{ $siteJS.RelPermalink }}"></script>
   {{ block "scripts" . }}{{ end }}
 </body>
 </html>

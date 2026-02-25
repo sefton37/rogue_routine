@@ -1,17 +1,18 @@
 <article class="digest-card">
-  <a href="{{ .Permalink }}" class="digest-card-link">
+  <div class="digest-card-inner">
+    <a href="{{ .Permalink }}" class="digest-card-link" aria-label="{{ .Date.Format "January 2, 2006" }} digest"></a>
     <div class="digest-date">{{ .Date.Format "January 2, 2006" }}</div>
     <div class="digest-meta">
       {{ with .Params.article_count }}{{ . }} articles{{ end }}{{ with .Params.source_count }} · {{ . }} sources{{ end }}
     </div>
-  </a>
-  {{ with .Params.topics }}
-  <div class="thread-tags">
-    {{ range . }}<a href="/topics/{{ . | urlize }}/" class="thread-tag">{{ . }}</a>{{ end }}
+    {{ with .Params.topics }}
+    <div class="thread-tags">
+      {{ range . }}<a href="/topics/{{ . | urlize }}/" class="thread-tag">{{ . }}</a>{{ end }}
+    </div>
+    {{ end }}
+    {{ with .Params.big_picture }}
+    <div class="digest-big-picture collapsed">{{ . | markdownify }}</div>
+    <button class="digest-read-more">Read more</button>
+    {{ end }}
   </div>
-  {{ end }}
-  {{ with .Params.big_picture }}
-  <div class="digest-big-picture collapsed">{{ . | markdownify }}</div>
-  <button class="digest-read-more">Read more</button>
-  {{ end }}
 </article>
