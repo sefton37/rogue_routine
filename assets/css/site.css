@@ -1,31 +1,32 @@
 /* Rogue Routine — Custom Overrides on Pico CSS Classless */
 
-/* === Color Palette === */
+/* === Color Palette — High Desert (light default) === */
 :root {
-  --rr-text: #1a1a1a;
-  --rr-text-muted: #6b6b6b;
-  --rr-accent: #c05a2c;
-  --rr-accent-hover: #a84820;
-  --rr-accent-soft: #e4a375;
-  --rr-bg: #faf6f1;
-  --rr-surface: #fffcf9;
-  --rr-border: #e5e5e5;
-  --rr-score-bar: #c05a2c;
-  --rr-score-bg: #e5e7eb;
+  --rr-text: #14161c;
+  --rr-text-muted: #6b6f7a;
+  --rr-accent: #8a6c20;
+  --rr-accent-hover: #6d5518;
+  --rr-accent-soft: #b89040;
+  --rr-bg: #f5f6f9;
+  --rr-surface: #ffffff;
+  --rr-border: #d8dbe2;
+  --rr-score-bar: #8a6c20;
+  --rr-score-bg: #e2e4ea;
 }
 
+/* === Dusk & Stone (dark) === */
 @media (prefers-color-scheme: dark) {
   :root {
-    --rr-text: #e5e5e5;
-    --rr-text-muted: #9ca3af;
-    --rr-accent: #e4a375;
-    --rr-accent-hover: #edb88f;
-    --rr-accent-soft: #c05a2c;
-    --rr-bg: #111111;
-    --rr-surface: #1a1a1a;
-    --rr-border: #2a2a2a;
-    --rr-score-bar: #e4a375;
-    --rr-score-bg: #374151;
+    --rr-text: #f0ece4;
+    --rr-text-muted: #8a8d96;
+    --rr-accent: #d4a856;
+    --rr-accent-hover: #e0be6a;
+    --rr-accent-soft: #a88240;
+    --rr-bg: #0f1114;
+    --rr-surface: #1a1b1f;
+    --rr-border: #2e3035;
+    --rr-score-bar: #d4a856;
+    --rr-score-bg: #242629;
   }
 }
 

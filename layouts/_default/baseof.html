@@ -12,7 +12,7 @@
   </main>
   {{ partial "footer.html" . }}
   {{ $siteJS := resources.Get "js/site.js" | fingerprint }}
-  <script src="{{ $siteJS.RelPermalink }}"></script>
+  <script src="{{ $siteJS.RelPermalink }}" integrity="{{ $siteJS.Data.Integrity }}" crossorigin="anonymous"></script>
   {{ block "scripts" . }}{{ end }}
 </body>
 </html>

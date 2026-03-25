@@ -85,5 +85,5 @@
 
 {{ define "scripts" }}
 {{ $readerJS := resources.Get "js/reader.js" | fingerprint }}
-<script src="{{ $readerJS.RelPermalink }}"></script>
+<script src="{{ $readerJS.RelPermalink }}" integrity="{{ $readerJS.Data.Integrity }}" crossorigin="anonymous"></script>
 {{ end }}
