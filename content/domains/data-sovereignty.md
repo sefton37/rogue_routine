@@ -16,4 +16,4 @@ Data sovereignty concerns who controls personal data — its collection, storage
 
 Articles scoring high on Data Sovereignty often cover privacy legislation (GDPR, state privacy laws), data breaches, government surveillance programs, and emerging frameworks for digital identity and consent.
 
-Every article Sieve processes receives a score of 0–3 on this domain. Browse articles scored on this domain in the [Reader](/reader/?axioms=data_sovereignty).
+Every article Sieve processes receives a score of 0–3 on this domain. Browse articles scored on this domain in the [Reader](/reader/?domains=data_sovereignty).

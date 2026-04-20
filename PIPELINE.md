@@ -106,9 +106,9 @@ The article index is a single JSON file containing metadata for every article in
       "published": "2026-02-15",
       "ingested": "2026-02-15T08:30:00Z",
       "overall_score": 7.8,
-      "axiom_scores": {
-        "axiom_name_1": 8.0,
-        "axiom_name_2": 7.5
+      "domain_scores": {
+        "domain_name_1": 8.0,
+        "domain_name_2": 7.5
       },
       "threads": ["thread-slug-1", "thread-slug-2"],
       "digest_date": "2026-02-15",

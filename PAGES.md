@@ -79,7 +79,7 @@ Long-form reading. Wide content column, comfortable line length (60-75 character
 
 ## 2. The Reader — `/reader/`
 
-**Purpose:** Browse every article Sieve has stored. Sort by source, by axiom scores, by date. The raw intelligence, transparent.
+**Purpose:** Browse every article Sieve has stored. Sort by source, by domain scores, by date. The raw intelligence, transparent.
 
 **What the visitor sees:**
 
@@ -89,7 +89,7 @@ A filterable, sortable table/list of articles. Each article entry shows:
 - **Source** — publication name
 - **Date** — publication date
 - **Overall Score** — the composite rubric score (numerical)
-- **Axiom Scores** — individual dimension scores, shown as small indicators or expandable detail
+- **Domain Scores** — individual domain scores, shown as small indicators or expandable detail
 - **Threads** — which detected threads this article belongs to (as tags)
 
 **Filtering and sorting:**
@@ -99,7 +99,7 @@ The reader provides client-side filtering and sorting. No server-side processing
 | Filter/Sort | Behavior |
 |---|---|
 | **By Source** | Dropdown or clickable source list. Show only articles from selected publication(s). |
-| **By Axiom** | Sort ascending/descending on any individual axiom score. See which articles scored highest on a specific dimension. |
+| **By Domain** | Sort ascending/descending on any individual domain score. See which articles scored highest on a specific domain. |
 | **By Overall Score** | Sort by composite score. Surface the highest-signal articles across the entire corpus. |
 | **By Date** | Chronological or reverse-chronological. Default: newest first. |
 | **By Thread** | Show only articles belonging to a selected thread. See the full evidence trail for a detected pattern. |
@@ -119,9 +119,9 @@ articles.json schema:
     "url": "https://...",
     "published": "2026-02-15",
     "overall_score": 7.8,
-    "axiom_scores": {
-      "axiom_1": 8.0,
-      "axiom_2": 7.5,
+    "domain_scores": {
+      "domain_1": 8.0,
+      "domain_2": 7.5,
       ...
     },
     "threads": ["thread-slug-1"],
@@ -135,7 +135,7 @@ articles.json schema:
 
 This page answers the question: "What is Sieve actually seeing?" It's radical transparency. Every article that went into every digest, with every score that determined its inclusion. The visitor can verify the work — trace any claim in any digest back to its source articles and see why those articles were selected.
 
-This is also what makes the Reader different from an RSS reader. You're not just seeing articles — you're seeing articles *evaluated through a framework.* The axiom scores make the framework visible.
+This is also what makes the Reader different from an RSS reader. You're not just seeing articles — you're seeing articles *evaluated through a framework.* The domain scores make the framework visible.
 
 **Template structure:**
 
@@ -152,11 +152,11 @@ This is also what makes the Reader different from an RSS reader. You're not just
 ├────────────────────────────────────────────────────────────┤
 │  8.2  Article Title Here                    Source · Date  │
 │       [thread-1] [thread-2]                                │
-│       Axiom scores: ██░░ ████ ███░ ██░░ ████ ███░ ██░░    │
+│       Domain scores: ██░░ ████ ███░ ██░░ ████ ███░ ██░░    │
 ├────────────────────────────────────────────────────────────┤
 │  7.9  Another Article Title                 Source · Date  │
 │       [thread-3]                                           │
-│       Axiom scores: ███░ ██░░ ████ ███░ ██░░ ████ ███░    │
+│       Domain scores: ███░ ██░░ ████ ███░ ██░░ ████ ███░    │
 ├────────────────────────────────────────────────────────────┤
 │  ...                                                       │
 │                                                            │
@@ -173,7 +173,7 @@ This is also what makes the Reader different from an RSS reader. You're not just
 
 - Title, source, publication date, ingestion date
 - Link to original article (opens in new tab)
-- Overall score with breakdown of all axiom scores (with labels and explanations)
+- Overall score with breakdown of all domain scores (with labels and explanations)
 - Which digests this article appeared in (linked)
 - Which threads this article belongs to (linked)
 - Excerpt or summary if available
@@ -210,13 +210,13 @@ This section should make clear that Abend also writes on [Rogue Routine](https:/
 
 - **Sieve.** What it is — a local-first news intelligence engine. How it works at a high level: RSS ingestion → article extraction → rubric scoring → digest generation → thread detection. All running locally. All stored in SQLite. All MIT licensed.
 
-- **The Rubric.** The analytical framework used to score every article. Each axiom explained:
+- **The Rubric.** The analytical framework used to score every article. Each domain explained:
   - What it measures
   - Why it matters
   - How it's scored (scale, criteria)
-  - *[Note: Populate with actual axiom names and descriptions from Sieve's rubric configuration]*
+  - *[Note: Populate with actual domain names and descriptions from Sieve's rubric configuration]*
 
-- **Scoring.** How individual axiom scores combine into an overall score. How scores determine which articles appear in digests. What threshold means "worth reading" versus "noise."
+- **Scoring.** How individual domain scores combine into an overall score. How scores determine which articles appear in digests. What threshold means "worth reading" versus "noise."
 
 - **Digests.** How daily digests are generated. What the AI model receives (scored articles, thread context) and what it produces (synthesis in Abend's voice). How the voice guidelines shape generation.
 

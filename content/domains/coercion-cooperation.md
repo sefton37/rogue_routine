@@ -15,4 +15,4 @@ This domain tracks the spectrum between systems that compel participation and th
 
 Articles scoring high on Coercion vs. Cooperation often cover platform lock-in strategies, worker organizing in tech, cooperative alternatives to corporate platforms, terms-of-service changes that remove user choice, and the tension between network effects and genuine opt-in.
 
-Every article Sieve processes receives a score of 0–3 on this domain. Browse articles scored on this domain in the [Reader](/reader/?axioms=coercion_cooperation).
+Every article Sieve processes receives a score of 0–3 on this domain. Browse articles scored on this domain in the [Reader](/reader/?domains=coercion_cooperation).

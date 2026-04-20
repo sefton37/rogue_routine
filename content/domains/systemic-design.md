@@ -15,4 +15,4 @@ Systemic design examines how the structure of policies, incentives, and feedback
 
 Articles scoring high on Systemic Design often cover AI regulation proposals, content moderation policy effects, platform incentive structures that produce harmful outcomes, and cases where technology policy produces consequences opposite to its stated goals.
 
-Every article Sieve processes receives a score of 0–3 on this domain. Browse articles scored on this domain in the [Reader](/reader/?axioms=systemic_design).
+Every article Sieve processes receives a score of 0–3 on this domain. Browse articles scored on this domain in the [Reader](/reader/?domains=systemic_design).

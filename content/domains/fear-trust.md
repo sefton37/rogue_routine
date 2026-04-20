@@ -15,4 +15,4 @@ This domain examines whether technology systems cultivate trust or exploit fear.
 
 Articles scoring high on Fear vs. Trust often cover cybersecurity fearmongering vs. legitimate threat reporting, manipulative pricing during outages, misinformation campaigns, platform trust and safety teams, and technologies designed to build rather than erode social trust.
 
-Every article Sieve processes receives a score of 0–3 on this domain. Browse articles scored on this domain in the [Reader](/reader/?axioms=fear_trust).
+Every article Sieve processes receives a score of 0–3 on this domain. Browse articles scored on this domain in the [Reader](/reader/?domains=fear_trust).

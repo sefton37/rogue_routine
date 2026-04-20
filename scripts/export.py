@@ -258,7 +258,7 @@ def get_articles_for_digest_date(
                 "url": row[3],
                 "published": extract_date(row[4]),
                 "overall_score": row[5],
-                "axiom_scores": {
+                "domain_scores": {
                     "attention_economy": row[7],
                     "data_sovereignty": row[8],
                     "power_consolidation": row[9],
@@ -480,7 +480,7 @@ def export_articles_json(
                 "url": row[3],
                 "published": extract_date(row[4]),
                 "overall_score": row[5],
-                "axiom_scores": {
+                "domain_scores": {
                     "attention_economy": row[7],
                     "data_sovereignty": row[8],
                     "power_consolidation": row[9],

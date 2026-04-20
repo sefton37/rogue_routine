@@ -16,4 +16,4 @@ Democratization tracks whether technology expands access to tools, knowledge, an
 
 Articles scoring high on Democratization often cover open-source AI model releases, local-first software projects, broadband access initiatives, right-to-repair legislation, and the tension between proprietary platforms and open alternatives.
 
-Every article Sieve processes receives a score of 0–3 on this domain. Browse articles scored on this domain in the [Reader](/reader/?axioms=democratization).
+Every article Sieve processes receives a score of 0–3 on this domain. Browse articles scored on this domain in the [Reader](/reader/?domains=democratization).

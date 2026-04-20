@@ -16,4 +16,4 @@ Power consolidation tracks how influence and control concentrate within technolo
 
 Articles scoring high on Power Consolidation often cover Big Tech antitrust actions, platform policy changes that affect smaller competitors, acquisitions that reduce market diversity, and the revolving door between Silicon Valley and government.
 
-Every article Sieve processes receives a score of 0–3 on this domain. Browse articles scored on this domain in the [Reader](/reader/?axioms=power_consolidation).
+Every article Sieve processes receives a score of 0–3 on this domain. Browse articles scored on this domain in the [Reader](/reader/?domains=power_consolidation).

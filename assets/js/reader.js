@@ -208,9 +208,9 @@
         if (haystack.indexOf(search) === -1) return false;
       }
       // Domain filter: article must score > 0 on all selected domains
-      if (selectedDomains.length > 0 && a.axiom_scores) {
+      if (selectedDomains.length > 0 && a.domain_scores) {
         for (var i = 0; i < selectedDomains.length; i++) {
-          if (!a.axiom_scores[selectedDomains[i]] || a.axiom_scores[selectedDomains[i]] <= 0) {
+          if (!a.domain_scores[selectedDomains[i]] || a.domain_scores[selectedDomains[i]] <= 0) {
             return false;
           }
         }
@@ -228,8 +228,8 @@
         vb = b.published || "";
       } else {
         // Sorting by an individual domain
-        va = (a.axiom_scores && a.axiom_scores[sortField]) || 0;
-        vb = (b.axiom_scores && b.axiom_scores[sortField]) || 0;
+        va = (a.domain_scores && a.domain_scores[sortField]) || 0;
+        vb = (b.domain_scores && b.domain_scores[sortField]) || 0;
       }
       if (va < vb) return -sortDir;
       if (va > vb) return sortDir;
@@ -307,10 +307,10 @@
 
   function renderArticle(a) {
     var bars = "";
-    if (a.axiom_scores) {
+    if (a.domain_scores) {
       bars = '<svg width="27" height="16" style="vertical-align:middle;margin-left:4px" role="img" aria-label="Domain scores">';
       for (var i = 0; i < domainKeys.length; i++) {
-        var v = a.axiom_scores[domainKeys[i]] || 0;
+        var v = a.domain_scores[domainKeys[i]] || 0;
         var h = Math.max(2, Math.round((v / 3) * 16));
         var x = i * 4;
         bars += '<rect x="' + x + '" y="' + (16 - h) + '" width="3" height="' + h +
@@ -335,9 +335,9 @@
     }
 
     var detail = '<div class="article-detail">';
-    if (a.axiom_scores) {
+    if (a.domain_scores) {
       for (var i = 0; i < domainKeys.length; i++) {
-        var v = a.axiom_scores[domainKeys[i]] || 0;
+        var v = a.domain_scores[domainKeys[i]] || 0;
         detail += '<div class="domain-row"><span class="domain-label">' +
           domainLabels[domainKeys[i]] + '</span><span class="domain-value">' + v + '/3</span></div>';
       }
@@ -345,10 +345,10 @@
     detail += "</div>";
 
     var tooltip = "";
-    if (a.axiom_scores) {
+    if (a.domain_scores) {
       tooltip = '<div class="score-tooltip">';
       for (var i = 0; i < domainKeys.length; i++) {
-        var v = a.axiom_scores[domainKeys[i]] || 0;
+        var v = a.domain_scores[domainKeys[i]] || 0;
         tooltip += '<div class="score-tooltip-row"><span>' +
           domainLabels[domainKeys[i]] + '</span><span class="score-tooltip-val">' + v + '/3</span></div>';
       }

@@ -117,7 +117,7 @@ Score  Title                          Source        Date
 ─────  ─────────────────────────────  ──────────── ──────────
  8.2   Article Title Here             Reuters       Feb 15
        [regulatory-capture] [ai-safety]
-       ░░░░░░░░██ ░░░░░░██░░ ░░░░░░░░░█  (axiom mini-bars)
+       ░░░░░░░░██ ░░░░░░██░░ ░░░░░░░░░█  (domain mini-bars)
 ─────  ─────────────────────────────  ──────────── ──────────
  7.9   Another Article Title          Ars Technica  Feb 15
        [semiconductor]

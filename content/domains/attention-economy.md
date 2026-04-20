@@ -15,4 +15,4 @@ The attention economy describes the competition for human attention through tech
 
 Articles scoring high on the Attention Economy domain often cover social media platform changes, ad-tech developments, content recommendation systems, and the growing tension between user wellbeing and engagement metrics.
 
-Every article Sieve processes receives a score of 0–3 on this domain. A score of 3 means the article is deeply relevant to attention economy dynamics. Browse articles scored on this domain in the [Reader](/reader/?axioms=attention_economy).
+Every article Sieve processes receives a score of 0–3 on this domain. A score of 3 means the article is deeply relevant to attention economy dynamics. Browse articles scored on this domain in the [Reader](/reader/?domains=attention_economy).

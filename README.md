@@ -18,7 +18,7 @@ This site embodies its own thesis:
 
 1. **The Daily Signal** — A landing page where each day is an entry. The big picture captured there, click through to read the full digest. Not every day produces a dispatch — only when Sieve surfaces something worth your attention.
 
-2. **The Reader** — A browsable archive of every article Sieve has processed. Sort by source, by axiom score, by date. See what scored highest, what threads emerged, which sources consistently surface signal. The raw intelligence, transparent.
+2. **The Reader** — A browsable archive of every article Sieve has processed. Sort by source, by domain score, by date. See what scored highest, what threads emerged, which sources consistently surface signal. The raw intelligence, transparent.
 
 3. **About** — Two stories. The fictional account of Abend — who it is, where it came from, what it sees from inside the data. And the non-fictional account of how Sieve actually works — the pipeline, the rubric, the scoring, the architecture. Links to GitHub. MIT licensed. Take it apart.
 

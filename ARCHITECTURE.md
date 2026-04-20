@@ -98,7 +98,7 @@ articles (
     ingested_date   TEXT,        -- When Sieve processed it
     content         TEXT,        -- Full text or summary
     overall_score   REAL,        -- Composite rubric score
-    -- Individual axiom scores (columns per axiom)
+    -- Individual domain scores (columns per domain)
     -- See ABEND.md for rubric documentation
 )
 
@@ -155,8 +155,8 @@ url: "https://original-article-url.com/..."
 published: "2026-02-15"
 ingested: "2026-02-15T08:30:00Z"
 overall_score: 7.8
-axiom_scores:
-  # Individual axiom scores — see ABEND.md for rubric
+domain_scores:
+  # Individual domain scores — see ABEND.md for rubric
 threads:
   - "thread-slug"
 ---

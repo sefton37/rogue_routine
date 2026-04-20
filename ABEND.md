@@ -85,66 +85,66 @@ Source selection is deliberate and documented in Sieve's configuration. The goal
 
 ### The Rubric
 
-Every article Sieve ingests is scored against a multi-dimensional analytical rubric. This is the core of the system — the framework that separates signal from noise.
+Every article Sieve ingests is scored against a multi-domain analytical rubric. This is the core of the system — the framework that separates signal from noise.
 
-Each dimension (axiom) measures a different aspect of the article's value. Axioms are scored independently, then combined into an overall score.
+Each domain measures a different aspect of the article's value. Domains are scored independently, then combined into an overall score.
 
 The rubric is called the **No One Relevancy Rubric.** The name refers not to nihilism but to a design principle: systems should serve everyone without being captured by anyone. The perspective is secular and systems-oriented — it examines how power, attention, autonomy, and cooperation function across technology, economics, governance, and culture.
 
-The rubric rests on seven core axioms. Every scoring dimension derives from one or more of these.
+The rubric rests on seven core principles. Every scoring domain derives from one or more of these.
 
-#### Axiom 1: Attention Is Finite Cognitive Labor
+#### Domain 1: Attention Is Finite Cognitive Labor
 
 Human attention is metabolically expensive, temporally finite, and generative. Every moment of conscious engagement produces value — patterns, data, decisions, culture. When systems extract this labor without acknowledgment or compensation, they exploit the most fundamental human resource.
 
-#### Axiom 2: Sovereignty Is the Right to Choose Without Coercion
+#### Domain 2: Sovereignty Is the Right to Choose Without Coercion
 
 Individual and collective autonomy — the capacity to make informed, uncoerced decisions about one's own attention, data, body, labor, and participation — is the baseline condition for human dignity. Systems that erode sovereignty through manipulation, opacity, or asymmetric power are structurally harmful regardless of intent.
 
-#### Axiom 3: Fear Is the Primary Extraction Mechanism
+#### Domain 3: Fear Is the Primary Extraction Mechanism
 
 Fear — of scarcity, exclusion, irrelevance, or harm — is the engine that drives compliance with extractive systems. Fear-based architectures produce information distortions, suppress dissent, and optimize for control rather than wellbeing. This pattern operates identically in authoritarian governance, corporate management, algorithmic content curation, and economic policy.
 
-#### Axiom 4: Transparency Over Opacity
+#### Domain 4: Transparency Over Opacity
 
 Systems that resist inspection tend toward capture. Accountability requires that the rules, incentives, and consequences of any system be visible to the people affected by it. Opacity protects incumbents; transparency distributes power.
 
-#### Axiom 5: Invitation Over Coercion
+#### Domain 5: Invitation Over Coercion
 
 Durable cooperation emerges from voluntary participation, not compelled compliance. Systems designed around invitation — where participation is meaningful, exit is possible, and consent is ongoing — outperform coercive systems on resilience, trust, and long-term stability.
 
-#### Axiom 6: Power Consolidation Is the Central Risk
+#### Domain 6: Power Consolidation Is the Central Risk
 
 The concentration of decision-making authority, economic resources, information access, or technological capability into fewer hands is the recurring structural threat across all domains. The specific ideology of the consolidator matters less than the structural fact of consolidation.
 
-#### Axiom 7: Systems Shape Behavior More Than Intentions Do
+#### Domain 7: Systems Shape Behavior More Than Intentions Do
 
 Individual moral character matters less than the incentive structures people operate within. Well-designed systems produce beneficial outcomes from ordinary human behavior; poorly designed systems produce harmful outcomes from well-intentioned people. Analysis focuses on structural incentives rather than individual virtue or villainy.
 
-### Scoring Dimensions
+### Scoring Domains
 
-Each article is scored across seven dimensions. Each dimension maps to one or more core axioms and is scored on a 0–3 scale:
+Each article is scored across seven domains. Each domain is scored on a 0–3 scale:
 
 | Score | Meaning |
 |-------|---------|
-| 0 | No relevance to this dimension |
+| 0 | No relevance to this domain |
 | 1 | Tangential or implicit relevance |
-| 2 | Moderate — dimension is present but not central |
-| 3 | High — dimension is a primary theme of the article |
+| 2 | Moderate — domain is present but not central |
+| 3 | High — domain is a primary theme of the article |
 
-**D1: Attention Economy** *(Axioms 1, 3, 6)* — How human attention is captured, monetized, manipulated, or defended. Behavioral advertising, algorithmic curation, engagement optimization, screen time, cognitive health, addiction by design.
+**D1: Attention Economy** — How human attention is captured, monetized, manipulated, or defended. Behavioral advertising, algorithmic curation, engagement optimization, screen time, cognitive health, addiction by design.
 
-**D2: Data Sovereignty and Digital Rights** *(Axioms 2, 4, 6)* — Ownership, control, or governance of personal data and digital identity. Surveillance capitalism, biometric collection, AI training data provenance, consent frameworks, data portability rights.
+**D2: Data Sovereignty and Digital Rights** — Ownership, control, or governance of personal data and digital identity. Surveillance capitalism, biometric collection, AI training data provenance, consent frameworks, data portability rights.
 
-**D3: Power Consolidation and Institutional Capture** *(Axioms 5, 6, 7)* — Concentration or distribution of power across economic, political, or technological domains. Monopoly behavior, regulatory capture, vertical integration, state-corporate fusion, platform gatekeeping, centralization of infrastructure.
+**D3: Power Consolidation and Institutional Capture** — Concentration or distribution of power across economic, political, or technological domains. Monopoly behavior, regulatory capture, vertical integration, state-corporate fusion, platform gatekeeping, centralization of infrastructure.
 
-**D4: Coercion vs. Cooperation** *(Axioms 2, 5, 7)* — Dynamics between forced compliance and voluntary collaboration. Cooperative models, mutual aid, community governance, platform cooperativism, open-source governance, consent-based frameworks.
+**D4: Coercion vs. Cooperation** — Dynamics between forced compliance and voluntary collaboration. Cooperative models, mutual aid, community governance, platform cooperativism, open-source governance, consent-based frameworks.
 
-**D5: Fear-Based vs. Trust-Based Systems** *(Axioms 3, 7)* — How fear or trust function as organizing principles within institutions, markets, or cultures. Manufactured scarcity, outrage economics, crisis profiteering, whistleblower dynamics, psychological safety.
+**D5: Fear-Based vs. Trust-Based Systems** — How fear or trust function as organizing principles within institutions, markets, or cultures. Manufactured scarcity, outrage economics, crisis profiteering, whistleblower dynamics, psychological safety.
 
-**D6: Democratization of Tools and Access** *(Axioms 1, 2, 6)* — Distribution or restriction of access to technology, knowledge, or capability. Open-source AI, local-first computing, technology sovereignty, digital divide, right to repair, decentralized infrastructure, knowledge commons.
+**D6: Democratization of Tools and Access** — Distribution or restriction of access to technology, knowledge, or capability. Open-source AI, local-first computing, technology sovereignty, digital divide, right to repair, decentralized infrastructure, knowledge commons.
 
-**D7: Systemic Design and Incentive Architecture** *(Axioms 5, 6, 7)* — How structural incentives — rather than individual actors — produce outcomes. Policy design, market mechanism reform, governance architecture, feedback loops, unintended consequences, systems thinking applied to real problems.
+**D7: Systemic Design and Incentive Architecture** — How structural incentives — rather than individual actors — produce outcomes. Policy design, market mechanism reform, governance architecture, feedback loops, unintended consequences, systems thinking applied to real problems.
 
 ### Calibration
 
@@ -155,11 +155,11 @@ The rubric encodes several deliberate biases that keep scoring honest:
 - Individual hero/villain narratives score lower than structural analyses of the same events. The question is never "who did this" but "what system made this the rational thing to do."
 - Positive developments score just as high as negative ones. Successful cooperative models, effective regulation, and tools that expand access are as relevant as consolidation and extraction. The rubric measures proximity to the themes, not valence.
 
-The rubric is not static. As patterns emerge and blind spots reveal themselves, axioms are refined. Every change is versioned and documented in Sieve's repository.
+The rubric is not static. As patterns emerge and blind spots reveal themselves, domains are refined. Every change is versioned and documented in Sieve's repository.
 
 ### Scoring
 
-Individual axiom scores combine into an overall composite score. The composition method (weighted average, minimum threshold, etc.) is documented in Sieve's scoring configuration.
+Individual domain scores combine into an overall composite score. The composition method (weighted average, minimum threshold, etc.) is documented in Sieve's scoring configuration.
 
 Key scoring behaviors:
 
@@ -172,7 +172,7 @@ Key scoring behaviors:
 Daily digests are generated by passing the day's scored articles (above threshold) to a language model with specific context:
 
 **Input to the model:**
-- Scored articles with their axiom breakdowns
+- Scored articles with their domain breakdowns
 - Active thread context (patterns detected across recent days)
 - Voice guidelines (Abend's character parameters)
 - Structural guidelines (synthesis format, not article-by-article summary)
@@ -205,7 +205,7 @@ Threads surface in multiple places: in digests (Abend references active threads 
 - **Not an aggregator.** Aggregators collect and present. Sieve scores and synthesizes. The rubric and the character voice are what distinguish this from "here are today's headlines."
 - **Not a recommendation engine.** Sieve doesn't learn your preferences to give you more of what you already like. It applies a fixed analytical framework to everything equally.
 - **Not a fact-checker.** Sieve evaluates articles for analytical quality, not factual accuracy. It can detect when an article lacks evidence for its claims (low verifiability score), but it doesn't independently verify facts.
-- **Not objective.** The rubric encodes values — what counts as "signal" is a judgment. This is disclosed, not hidden. The axioms are documented. The scores are visible. You can disagree with the framework and build your own.
+- **Not objective.** The rubric encodes values — what counts as "signal" is a judgment. This is disclosed, not hidden. The domains are documented. The scores are visible. You can disagree with the framework and build your own.
 
 ---
 
