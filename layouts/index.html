@@ -1,6 +1,12 @@
 {{ define "main" }}
 <div class="hero">
-  <img src="/img/hero.png" alt="Rogue Routine — AI-powered tech news intelligence" class="hero-img">
+  <div class="hero-bg">
+    <picture>
+      <source media="(max-width: 640px)" srcset="/img/sonora-sunrise-640.webp" type="image/webp">
+      <source media="(max-width: 1024px)" srcset="/img/sonora-sunrise-1024.webp" type="image/webp">
+      <img src="/img/sonora-sunrise-1024.webp" alt="" aria-hidden="true" loading="eager">
+    </picture>
+  </div>
 </div>
 <div class="signal-header">
   <h1>Rogue Routine</h1>

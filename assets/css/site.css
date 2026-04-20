@@ -1,78 +1,228 @@
-/* Rogue Routine — Custom Overrides on Pico CSS Classless */
+/* Rogue Routine — Standalone stylesheet built from Talking Rock design tokens */
+/* Token source: ~/dev/Talking Rock Design System/colors_and_type.css           */
 
-/* === Color Palette — High Desert (light default) === */
-:root {
-  --rr-text: #14161c;
-  --rr-text-muted: #6b6f7a;
-  --rr-accent: #8a6c20;
-  --rr-accent-hover: #6d5518;
-  --rr-accent-soft: #b89040;
-  --rr-bg: #f5f6f9;
-  --rr-surface: #ffffff;
-  --rr-border: #d8dbe2;
-  --rr-score-bar: #8a6c20;
-  --rr-score-bg: #e2e4ea;
+/* ============================================================================
+   RESET
+   ============================================================================ */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-/* === Dusk & Stone (dark) === */
-@media (prefers-color-scheme: dark) {
+/* ============================================================================
+   TOKENS — Dusk & Stone (dark default)
+   ============================================================================ */
+:root,
+[data-theme="dusk-stone"] {
+  /* Backgrounds */
+  --bg:               #0f1114;
+  --bg-surface:       #1a1b1f;
+  --bg-surface-raised:#242629;
+  --bg-surface-code:  #242629;
+
+  /* Borders */
+  --border:           #2e3035;
+  --border-strong:    #5e7a94;
+
+  /* Text */
+  --fg:               #f0ece4;
+  --fg-muted:         #8a8d96;
+  --fg-subtle:        #5e7a94;
+  --fg-on-accent:     #0f1114;
+
+  /* Brand accents */
+  --accent:           #d4a856;
+  --accent-hover:     #e0be6a;
+  --accent-dim:       rgba(212,168,86,0.12);
+  --secondary:        #5e7a94;
+  --secondary-dim:    #1e2d3d;
+
+  /* Semantic */
+  --status-ok:        #6a9a6e;
+  --status-warn:      #d4a856;
+  --status-error:     #c45c5c;
+  --status-info:      #5e7a94;
+  --selection-bg:     #d4a856;
+  --selection-fg:     #0f1114;
+}
+
+/* ============================================================================
+   TOKENS — High Desert (light fallback via media query)
+   ============================================================================ */
+@media (prefers-color-scheme: light) {
   :root {
-    --rr-text: #f0ece4;
-    --rr-text-muted: #8a8d96;
-    --rr-accent: #d4a856;
-    --rr-accent-hover: #e0be6a;
-    --rr-accent-soft: #a88240;
-    --rr-bg: #0f1114;
-    --rr-surface: #1a1b1f;
-    --rr-border: #2e3035;
-    --rr-score-bar: #d4a856;
-    --rr-score-bg: #242629;
+    --bg:               #f5f6f9;
+    --bg-surface:       #ffffff;
+    --bg-surface-raised:#eaecf1;
+    --bg-surface-code:  #eaecf1;
+    --border:           #d8dbe2;
+    --border-strong:    #456480;
+    --fg:               #14161c;
+    --fg-muted:         #6b6f7a;
+    --fg-subtle:        #9a9da6;
+    --fg-on-accent:     #ffffff;
+    --accent:           #8a6c20;
+    --accent-hover:     #6e561a;
+    --accent-dim:       rgba(138,108,32,0.10);
+    --secondary:        #456480;
+    --secondary-dim:    rgba(69,100,128,0.10);
+    --status-ok:        #3d7a50;
+    --status-warn:      #8a6c20;
+    --status-error:     #a83b3b;
+    --status-info:      #456480;
+    --selection-bg:     #8a6c20;
+    --selection-fg:     #ffffff;
   }
 }
 
-/* === Skip Link === */
-.skip-link {
-  position: absolute;
-  top: -100%;
-  left: 1rem;
-  padding: 0.5rem 1rem;
-  background: var(--rr-accent);
-  color: #fff;
-  border-radius: 0 0 4px 4px;
-  font-size: 0.85rem;
-  text-decoration: none;
-  z-index: 100;
-  transition: top 0.15s ease;
+/* ============================================================================
+   TOKENS — Typography
+   ============================================================================ */
+:root {
+  --font-body:    system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+                  Oxygen, Ubuntu, Cantarell, "Helvetica Neue", Arial, sans-serif;
+  --font-display: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+                  Oxygen, Ubuntu, Cantarell, "Helvetica Neue", Arial, sans-serif;
+  --font-mono:    "SF Mono", "Fira Code", "Fira Mono", "JetBrains Mono",
+                  "Roboto Mono", ui-monospace, Menlo, Consolas, monospace;
+
+  --fs-xs:    0.75rem;
+  --fs-sm:    0.85rem;
+  --fs-base:  1rem;
+  --fs-md:    1.05rem;
+  --fs-lg:    1.2rem;
+  --fs-xl:    1.5rem;
+  --fs-2xl:   2rem;
+  --fs-3xl:   2.6rem;
+  --fs-4xl:   3.2rem;
+
+  --fw-regular:  400;
+  --fw-medium:   500;
+  --fw-semibold: 600;
+  --fw-bold:     700;
+
+  --lh-tight:  1.2;
+  --lh-snug:   1.4;
+  --lh-normal: 1.65;
+  --lh-loose:  1.75;
+
+  --tracking-tight:  -0.02em;
+  --tracking-normal:  0;
+  --tracking-wide:    0.05em;
+  --tracking-caps:    0.1em;
 }
 
-.skip-link:focus {
-  top: 0;
+/* ============================================================================
+   TOKENS — Spacing, layout, radii, shadows, motion
+   ============================================================================ */
+:root {
+  --space-xs: 0.5rem;
+  --space-sm: 1rem;
+  --space-md: 2rem;
+  --space-lg: 4rem;
+  --space-xl: 6rem;
+
+  --width-content: 42rem;
+  --width-wide:    64rem;
+
+  --radius-sm:   3px;
+  --radius-md:   4px;
+  --radius-lg:   6px;
+  --radius-xl:   8px;
+  --radius-pill: 999px;
+
+  --shadow-sm:    0 1px 2px rgba(0,0,0,0.04);
+  --shadow-md:    0 1px 3px rgba(0,0,0,0.04);
+  --shadow-lg:    0 4px 14px rgba(0,0,0,0.06);
+  --shadow-focus: 0 0 0 2px var(--accent);
+
+  --ease-out:    cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --dur-fast:    120ms;
+  --dur-base:    150ms;
+  --dur-slow:    250ms;
 }
 
-/* === Base === */
+/* ============================================================================
+   BASE
+   ============================================================================ */
+html {
+  font-size: 18px;
+  -webkit-font-smoothing: antialiased;
+}
+
 body {
-  background: var(--rr-bg);
-  color: var(--rr-text);
-  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  line-height: 1.6;
+  font-family: var(--font-body);
+  font-size: var(--fs-base);
+  line-height: var(--lh-normal);
+  background: var(--bg);
+  color: var(--fg);
+  font-weight: var(--fw-regular);
 }
 
+::selection {
+  background: var(--selection-bg);
+  color: var(--selection-fg);
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* ============================================================================
+   LAYOUT
+   ============================================================================ */
 main {
   max-width: 70ch;
   margin: 0 auto;
   padding: 1rem;
 }
 
-/* === Typography === */
+/* ============================================================================
+   TYPOGRAPHY
+   ============================================================================ */
 h1, h2, h3, h4 {
-  line-height: 1.3;
+  line-height: var(--lh-tight);
 }
 
-h1 { font-size: 1.5rem; margin-bottom: 1rem; }
+h1 { font-size: var(--fs-xl); margin-bottom: 1rem; }
 h2 { font-size: 1.25rem; margin-top: 2rem; }
-h3 { font-size: 1.1rem; }
+h3 { font-size: var(--fs-lg); }
 
-/* === Navigation === */
+/* ============================================================================
+   SKIP LINK
+   ============================================================================ */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 1rem;
+  padding: 0.5rem 1rem;
+  background: var(--accent);
+  color: var(--fg-on-accent);
+  border-radius: 0 0 var(--radius-md) var(--radius-md);
+  font-size: var(--fs-sm);
+  text-decoration: none;
+  z-index: 100;
+  transition: top var(--dur-base) ease;
+}
+
+.skip-link:focus {
+  top: 0;
+}
+
+/* ============================================================================
+   NAVIGATION
+   ============================================================================ */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--bg);
+  border-bottom: 1px solid var(--secondary);
+}
+
 nav {
   max-width: 70ch;
   margin: 0 auto;
@@ -83,42 +233,44 @@ nav {
 }
 
 .nav-brand {
-  font-weight: 700;
+  font-weight: var(--fw-bold);
   font-size: 0.95rem;
-  color: var(--rr-text);
+  color: var(--fg);
   margin-right: auto;
   text-decoration: none;
-  transition: color 0.15s ease;
+  transition: color var(--dur-base) ease;
 }
 
 .nav-brand:hover {
-  color: var(--rr-accent);
+  color: var(--accent);
 }
 
 nav a {
   text-decoration: none;
-  color: var(--rr-text-muted);
+  color: var(--fg-muted);
   font-size: 0.9rem;
-  transition: color 0.15s ease;
+  transition: color var(--dur-base) ease;
 }
 
 nav a:hover,
 nav a[aria-current="page"] {
-  color: var(--rr-text);
+  color: var(--fg);
 }
 
 nav a[aria-current="page"] {
-  border-bottom: 2px solid var(--rr-accent);
+  border-bottom: 2px solid var(--secondary);
   padding-bottom: 2px;
 }
 
-/* === Footer === */
+/* ============================================================================
+   FOOTER
+   ============================================================================ */
 footer {
   max-width: 70ch;
   margin: 0 auto;
   padding: 2rem 1rem;
-  border-top: 1px solid var(--rr-border);
-  color: var(--rr-text-muted);
+  border-top: 1px solid var(--border);
+  color: var(--fg-subtle);
   font-size: 0.8rem;
   display: flex;
   justify-content: space-between;
@@ -127,13 +279,13 @@ footer {
 }
 
 footer a {
-  color: var(--rr-text-muted);
+  color: var(--fg-subtle);
   text-decoration: none;
-  transition: color 0.15s ease;
+  transition: color var(--dur-base) ease;
 }
 
 footer a:hover {
-  color: var(--rr-text);
+  color: var(--fg);
 }
 
 footer .footer-nav {
@@ -141,61 +293,75 @@ footer .footer-nav {
   gap: 1rem;
 }
 
-/* === Muted Text === */
+/* ============================================================================
+   MUTED TEXT
+   ============================================================================ */
 .muted {
-  color: var(--rr-text-muted);
-  font-size: 0.85rem;
+  color: var(--fg-muted);
+  font-size: var(--fs-sm);
 }
 
-/* === Hero (Landing Page) === */
+/* ============================================================================
+   HERO
+   ============================================================================ */
 .hero {
-  margin: -1rem -1rem 0 -1rem;
-  overflow: hidden;
   position: relative;
+  min-height: 30vh;
+  overflow: hidden;
+  margin: -1rem -1rem 0 -1rem;
 }
 
-.hero-img {
+.hero-bg {
+  position: absolute;
+  inset: 0;
+}
+
+.hero-bg picture,
+.hero-bg img {
   width: 100%;
+  height: 100%;
+  object-fit: cover;
   display: block;
 }
 
 .hero::after {
   content: "";
   position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 40%;
-  background: linear-gradient(to bottom, transparent, var(--rr-bg));
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(15,17,20,0.7), rgba(15,17,20,0.9));
   pointer-events: none;
 }
 
-/* === Signal Header === */
+/* ============================================================================
+   SIGNAL HEADER
+   ============================================================================ */
 .signal-header {
-  padding: 1.5rem 0 1.5rem 0;
-  border-bottom: 1px solid var(--rr-border);
+  padding: 1.5rem 0;
+  border-bottom: 1px solid var(--border);
   margin-bottom: 0.5rem;
 }
 
 .signal-header h1 {
   font-size: 2.25rem;
   font-weight: 800;
-  letter-spacing: -0.03em;
+  letter-spacing: var(--tracking-tight);
   margin: 0 0 0.75rem 0;
 }
 
 .signal-intro {
-  color: var(--rr-text-muted);
+  color: var(--fg-muted);
   font-size: 0.95rem;
   line-height: 1.7;
   max-width: 60ch;
   margin: 0;
 }
 
-/* === Date Jump === */
+/* ============================================================================
+   DATE JUMP
+   ============================================================================ */
 .signal-jump {
   padding: 0.75rem 0;
-  font-size: 0.85rem;
+  font-size: var(--fs-sm);
 }
 
 .signal-jump label {
@@ -205,22 +371,23 @@ footer .footer-nav {
 }
 
 .signal-jump input[type="date"] {
-  font-size: 0.85rem;
+  font-size: var(--fs-sm);
   padding: 0.25rem 0.4rem;
-  border: 1px solid var(--rr-border);
-  border-radius: 3px;
-  background: var(--rr-surface);
-  color: var(--rr-text);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--bg-surface);
+  color: var(--fg);
 }
 
-/* === Digest Cards (Landing Page) === */
+/* ============================================================================
+   DIGEST CARDS (Landing Page)
+   ============================================================================ */
 .digest-card {
   padding: 1.5rem 1rem;
   margin: 0 -1rem;
-  border-bottom: 1px solid var(--rr-border);
+  border-bottom: 1px solid var(--border);
 }
 
-/* First card is the latest — give it prominence */
 .digest-card:first-of-type {
   padding: 2rem 1rem;
 }
@@ -233,7 +400,6 @@ footer .footer-nav {
   font-size: 0.95rem;
 }
 
-/* Older cards recede progressively */
 .digest-card:nth-of-type(3) { opacity: 0.9; }
 .digest-card:nth-of-type(4) { opacity: 0.82; }
 .digest-card:nth-of-type(n+5) { opacity: 0.75; }
@@ -249,7 +415,7 @@ footer .footer-nav {
 }
 
 .digest-card-inner:hover .digest-date {
-  color: var(--rr-accent);
+  color: var(--accent);
 }
 
 .thread-tags,
@@ -259,15 +425,15 @@ footer .footer-nav {
 }
 
 .digest-card .digest-date {
-  font-weight: 700;
+  font-weight: var(--fw-bold);
   font-size: 1.1rem;
   margin-bottom: 0.15rem;
-  color: var(--rr-text);
-  transition: color 0.15s ease;
+  color: var(--fg);
+  transition: color var(--dur-base) ease;
 }
 
 .digest-card .digest-meta {
-  color: var(--rr-text-muted);
+  color: var(--fg-muted);
   font-size: 0.8rem;
   margin-bottom: 0.75rem;
 }
@@ -275,7 +441,7 @@ footer .footer-nav {
 .digest-big-picture {
   font-size: 0.9rem;
   line-height: 1.65;
-  color: var(--rr-text);
+  color: var(--fg);
   position: relative;
 }
 
@@ -287,9 +453,8 @@ footer .footer-nav {
   margin-bottom: 0;
 }
 
-/* Collapsed state: max 4 lines with fade */
 .digest-big-picture.collapsed {
-  max-height: 6.6em; /* ~4 lines at 1.65 line-height */
+  max-height: 6.6em;
   overflow: hidden;
 }
 
@@ -300,7 +465,7 @@ footer .footer-nav {
   left: 0;
   right: 0;
   height: 2em;
-  background: linear-gradient(to bottom, transparent, var(--rr-bg));
+  background: linear-gradient(to bottom, transparent, var(--bg));
   pointer-events: none;
 }
 
@@ -308,20 +473,22 @@ footer .footer-nav {
   display: inline-block;
   margin-top: 0.35rem;
   font-size: 0.8rem;
-  color: var(--rr-accent);
+  color: var(--accent);
   cursor: pointer;
   border: none;
   background: none;
   padding: 0;
   font-family: inherit;
-  transition: color 0.15s ease;
+  transition: color var(--dur-base) ease;
 }
 
 .digest-read-more:hover {
-  color: var(--rr-accent-hover);
+  color: var(--accent-hover);
 }
 
-/* === Thread Tags === */
+/* ============================================================================
+   THREAD TAGS
+   ============================================================================ */
 .thread-tags {
   display: flex;
   flex-wrap: wrap;
@@ -332,13 +499,15 @@ footer .footer-nav {
 .thread-tag {
   display: inline-block;
   font-size: 0.75rem;
-  color: var(--rr-text-muted);
-  border: 1px solid var(--rr-border);
-  border-radius: 3px;
+  color: var(--fg-muted);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
   padding: 0.1rem 0.4rem;
 }
 
-/* === Pagination === */
+/* ============================================================================
+   PAGINATION
+   ============================================================================ */
 .pagination {
   display: flex;
   justify-content: space-between;
@@ -347,21 +516,23 @@ footer .footer-nav {
 }
 
 .pagination a {
-  color: var(--rr-accent);
+  color: var(--accent);
 }
 
-/* === Single Digest === */
+/* ============================================================================
+   SINGLE DIGEST
+   ============================================================================ */
 .digest-nav {
   display: flex;
   justify-content: space-between;
   padding: 1.5rem 0;
-  border-top: 1px solid var(--rr-border);
-  font-size: 0.85rem;
+  border-top: 1px solid var(--border);
+  font-size: var(--fs-sm);
   margin-top: 2rem;
 }
 
 .digest-nav a {
-  color: var(--rr-accent);
+  color: var(--accent);
 }
 
 .digest-header {
@@ -375,29 +546,29 @@ footer .footer-nav {
 }
 
 .digest-header .digest-date {
-  font-weight: 700;
-  color: var(--rr-accent);
-  font-size: 0.85rem;
+  font-weight: var(--fw-bold);
+  color: var(--accent);
+  font-size: var(--fs-sm);
   text-transform: uppercase;
   letter-spacing: 0.04em;
 }
 
 .digest-header .digest-meta {
-  color: var(--rr-text-muted);
+  color: var(--fg-muted);
   font-size: 0.8rem;
   margin-top: 0.5rem;
 }
 
-/* Digest lede — the Big Picture as pull quote */
+/* Digest lede — Big Picture as pull quote */
 .digest-content > h2:first-child {
-  display: none; /* Hide "The Big Picture" heading — content speaks for itself */
+  display: none;
 }
 
 .digest-content > h2:first-child + p {
   font-size: 1.05rem;
   line-height: 1.7;
-  color: var(--rr-text);
-  border-left: 3px solid var(--rr-accent);
+  color: var(--fg);
+  border-left: 3px solid var(--secondary);
   padding-left: 1rem;
   margin-bottom: 2rem;
 }
@@ -409,12 +580,14 @@ footer .footer-nav {
 .digest-footer {
   margin-top: 2rem;
   padding-top: 1rem;
-  border-top: 1px solid var(--rr-border);
-  color: var(--rr-text-muted);
+  border-top: 1px solid var(--border);
+  color: var(--fg-muted);
   font-size: 0.8rem;
 }
 
-/* === Reader Toolbar === */
+/* ============================================================================
+   READER TOOLBAR
+   ============================================================================ */
 .reader-toolbar {
   display: flex;
   flex-wrap: wrap;
@@ -439,7 +612,7 @@ footer .footer-nav {
 
 .reader-field-label {
   font-size: 0.75rem;
-  color: var(--rr-text-muted);
+  color: var(--fg-muted);
   letter-spacing: 0.02em;
 }
 
@@ -448,32 +621,27 @@ footer .footer-nav {
   min-width: 10rem;
 }
 
-/* Neutralise Pico's label spacing inside the toolbar */
+/* Reader controls — clean without Pico */
 #reader-controls label {
   margin-bottom: 0;
 }
 
-#reader-controls label > select,
-#reader-controls label > input {
-  margin-top: 0;
-}
-
-/* Override Pico's form styling within the reader toolbar (use ID for specificity) */
 #reader-controls select,
 #reader-controls input,
 #reader-controls button {
   font-family: inherit;
-  font-size: 0.85rem;
+  font-size: var(--fs-sm);
   line-height: 1.4;
   padding: 0.35rem 0.5rem;
-  border: 1px solid var(--rr-border);
-  border-radius: 3px;
-  background-color: var(--rr-surface);
-  color: var(--rr-text);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background-color: var(--bg-surface);
+  color: var(--fg);
   height: 2rem;
   margin: 0;
   box-sizing: border-box;
   width: auto;
+  appearance: auto;
 }
 
 #reader-controls input[type="search"] {
@@ -484,27 +652,27 @@ footer .footer-nav {
 
 #sort-dir.sort-dir-btn {
   cursor: pointer;
-  color: var(--rr-text-muted);
+  color: var(--fg-muted);
   white-space: nowrap;
-  transition: color 0.15s ease, border-color 0.15s ease;
+  transition: color var(--dur-base) ease, border-color var(--dur-base) ease;
   height: 2rem;
   margin: 0;
   padding: 0.35rem 0.5rem;
   line-height: 1.4;
-  font-size: 0.85rem;
+  font-size: var(--fs-sm);
   box-sizing: border-box;
   display: inline-flex;
   align-items: center;
 }
 
 .sort-dir-btn:hover {
-  color: var(--rr-text);
-  border-color: var(--rr-accent);
+  color: var(--fg);
+  border-color: var(--accent);
 }
 
 .domain-filter-wrap {
   margin-bottom: 1rem;
-  font-size: 0.85rem;
+  font-size: var(--fs-sm);
 }
 
 .domain-filter-wrap summary {
@@ -524,13 +692,13 @@ footer .footer-nav {
   align-items: center;
   gap: 0.3rem;
   font-size: 0.8rem;
-  color: var(--rr-text);
+  color: var(--fg);
   cursor: pointer;
   white-space: nowrap;
 }
 
 .domain-checkboxes input[type=checkbox] {
-  accent-color: var(--rr-accent);
+  accent-color: var(--accent);
 }
 
 .domain-filter-hint {
@@ -542,7 +710,7 @@ footer .footer-nav {
 .reader-loading {
   padding: 2rem 0;
   text-align: center;
-  color: var(--rr-text-muted);
+  color: var(--fg-muted);
 }
 
 .reader-loading::after {
@@ -550,8 +718,8 @@ footer .footer-nav {
   display: inline-block;
   width: 1rem;
   height: 1rem;
-  border: 2px solid var(--rr-border);
-  border-top-color: var(--rr-accent);
+  border: 2px solid var(--border);
+  border-top-color: var(--accent);
   border-radius: 50%;
   animation: spin 0.8s linear infinite;
   margin-left: 0.5rem;
@@ -569,22 +737,22 @@ footer .footer-nav {
 
 .article-item {
   padding: 0.75rem 0;
-  border-bottom: 1px solid var(--rr-border);
+  border-bottom: 1px solid var(--border);
 }
 
 .article-item .article-title {
-  font-weight: 600;
+  font-weight: var(--fw-semibold);
   font-size: 0.95rem;
 }
 
 .article-item .article-title a {
-  color: var(--rr-text);
+  color: var(--fg);
   text-decoration: none;
-  transition: color 0.15s ease;
+  transition: color var(--dur-base) ease;
 }
 
 .article-item .article-title a:hover {
-  color: var(--rr-accent);
+  color: var(--accent);
 }
 
 .article-tags {
@@ -595,15 +763,15 @@ footer .footer-nav {
 }
 
 .article-summary {
-  font-size: 0.85rem;
+  font-size: var(--fs-sm);
   line-height: 1.55;
-  color: var(--rr-text-muted);
+  color: var(--fg-muted);
   margin: 0.3rem 0 0 0;
 }
 
 .article-item .article-meta {
   font-size: 0.8rem;
-  color: var(--rr-text-muted);
+  color: var(--fg-muted);
   margin-top: 0.25rem;
   display: flex;
   flex-wrap: wrap;
@@ -612,13 +780,13 @@ footer .footer-nav {
 }
 
 .article-source[data-source] {
-  color: var(--rr-text-muted);
+  color: var(--fg-muted);
   cursor: pointer;
-  transition: color 0.15s ease;
+  transition: color var(--dur-base) ease;
 }
 
 .article-source[data-source]:hover {
-  color: var(--rr-accent);
+  color: var(--accent);
   text-decoration: underline;
 }
 
@@ -633,9 +801,9 @@ footer .footer-nav {
 .article-score {
   display: inline-flex;
   align-items: center;
-  font-weight: 700;
+  font-weight: var(--fw-bold);
   font-size: 0.8rem;
-  color: var(--rr-accent);
+  color: var(--accent);
 }
 
 .score-tooltip {
@@ -644,13 +812,13 @@ footer .footer-nav {
   top: 100%;
   left: 0;
   margin-top: 0.4rem;
-  background: var(--rr-surface);
-  border: 1px solid var(--rr-border);
-  border-radius: 4px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
   padding: 0.5rem 0.75rem;
   min-width: 14rem;
   z-index: 10;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+  box-shadow: var(--shadow-lg);
   font-size: 0.8rem;
 }
 
@@ -662,22 +830,22 @@ footer .footer-nav {
   display: flex;
   justify-content: space-between;
   padding: 0.15rem 0;
-  color: var(--rr-text-muted);
+  color: var(--fg-muted);
 }
 
 .score-tooltip-val {
-  font-weight: 600;
-  color: var(--rr-text);
+  font-weight: var(--fw-semibold);
+  color: var(--fg);
   margin-left: 1rem;
 }
 
-/* Domain score bars rendered as inline SVG — no CSS classes needed */
+/* Domain score bars rendered as inline SVG */
 
 .article-detail {
   padding: 0.75rem 0 0.75rem 1rem;
-  border-left: 2px solid var(--rr-border);
+  border-left: 2px solid var(--border);
   margin-top: 0.5rem;
-  font-size: 0.85rem;
+  font-size: var(--fs-sm);
   display: none;
 }
 
@@ -692,11 +860,11 @@ footer .footer-nav {
 }
 
 .article-detail .domain-label {
-  color: var(--rr-text-muted);
+  color: var(--fg-muted);
 }
 
 .article-detail .domain-value {
-  font-weight: 600;
+  font-weight: var(--fw-semibold);
 }
 
 .reader-status-row {
@@ -708,7 +876,7 @@ footer .footer-nav {
 
 .reader-status {
   font-size: 0.8rem;
-  color: var(--rr-text-muted);
+  color: var(--fg-muted);
 }
 
 .reader-clear-filters {
@@ -716,14 +884,14 @@ footer .footer-nav {
   border: none;
   padding: 0;
   font-size: 0.8rem;
-  color: var(--rr-accent);
+  color: var(--accent);
   cursor: pointer;
   font-family: inherit;
-  transition: color 0.15s ease;
+  transition: color var(--dur-base) ease;
 }
 
 .reader-clear-filters:hover {
-  color: var(--rr-accent-hover);
+  color: var(--accent-hover);
 }
 
 .reader-pagination {
@@ -736,19 +904,19 @@ footer .footer-nav {
 
 .reader-pagination button {
   background: none;
-  border: 1px solid var(--rr-border);
-  border-radius: 3px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
   padding: 0.25rem 0.5rem;
   cursor: pointer;
   font-size: 0.8rem;
-  color: var(--rr-text-muted);
-  transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+  color: var(--fg-muted);
+  transition: background var(--dur-base) ease, color var(--dur-base) ease, border-color var(--dur-base) ease;
 }
 
 .reader-pagination button.active {
-  background: var(--rr-accent);
-  color: #fff;
-  border-color: var(--rr-accent);
+  background: var(--accent);
+  color: var(--fg-on-accent);
+  border-color: var(--accent);
 }
 
 .reader-pagination button:disabled {
@@ -756,13 +924,15 @@ footer .footer-nav {
   cursor: default;
 }
 
-/* === About Page === */
+/* ============================================================================
+   ABOUT PAGE
+   ============================================================================ */
 .about-part-one {
-  font-family: "SF Mono", "Fira Code", "Fira Mono", "Roboto Mono", monospace;
+  font-family: var(--font-mono);
   font-size: 0.9rem;
   line-height: 1.7;
   padding-bottom: 2rem;
-  border-bottom: 2px solid var(--rr-border);
+  border-bottom: 2px solid var(--border);
   margin-bottom: 2rem;
 }
 
@@ -775,10 +945,12 @@ footer .footer-nav {
 }
 
 .about-part-two table {
-  font-size: 0.85rem;
+  font-size: var(--fs-sm);
 }
 
-/* === Domains Grid === */
+/* ============================================================================
+   DOMAINS GRID
+   ============================================================================ */
 .domain-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
@@ -789,16 +961,16 @@ footer .footer-nav {
 .domain-card {
   display: block;
   padding: 1.25rem;
-  border: 1px solid var(--rr-border);
-  border-radius: 4px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
   text-decoration: none;
   color: inherit;
-  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  transition: border-color var(--dur-base) ease, box-shadow var(--dur-base) ease;
 }
 
 .domain-card:hover {
-  border-color: var(--rr-accent);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  border-color: var(--accent);
+  box-shadow: var(--shadow-lg);
 }
 
 .domain-card h2 {
@@ -807,8 +979,8 @@ footer .footer-nav {
 }
 
 .domain-card p {
-  font-size: 0.85rem;
-  color: var(--rr-text-muted);
+  font-size: var(--fs-sm);
+  color: var(--fg-muted);
   margin: 0;
   line-height: 1.5;
 }
@@ -818,19 +990,21 @@ footer .footer-nav {
   gap: 1.5rem;
   margin-top: 2rem;
   padding-top: 1.5rem;
-  border-top: 1px solid var(--rr-border);
+  border-top: 1px solid var(--border);
   font-size: 0.9rem;
 }
 
 .topic-nav a {
-  color: var(--rr-accent);
+  color: var(--accent);
 }
 
 .topic-nav a:hover {
-  color: var(--rr-accent-hover);
+  color: var(--accent-hover);
 }
 
-/* === Domain Single Page === */
+/* ============================================================================
+   DOMAIN SINGLE PAGE
+   ============================================================================ */
 .domain-page header {
   margin-bottom: 1.5rem;
 }
@@ -851,20 +1025,22 @@ footer .footer-nav {
   align-items: center;
   margin-top: 2rem;
   padding-top: 1.5rem;
-  border-top: 1px solid var(--rr-border);
+  border-top: 1px solid var(--border);
   font-size: 0.9rem;
 }
 
 .domain-explore-btn {
-  color: var(--rr-accent);
-  font-weight: 600;
+  color: var(--accent);
+  font-weight: var(--fw-semibold);
 }
 
 .domain-explore-btn:hover {
-  color: var(--rr-accent-hover);
+  color: var(--accent-hover);
 }
 
-/* === 404 === */
+/* ============================================================================
+   404
+   ============================================================================ */
 .four-oh-four {
   padding: 4rem 0;
   text-align: center;
@@ -876,10 +1052,12 @@ footer .footer-nav {
 }
 
 .four-oh-four p {
-  color: var(--rr-text-muted);
+  color: var(--fg-muted);
 }
 
-/* === Responsive === */
+/* ============================================================================
+   RESPONSIVE
+   ============================================================================ */
 @media (max-width: 600px) {
   nav {
     gap: 1rem;
@@ -908,7 +1086,9 @@ footer .footer-nav {
   }
 }
 
-/* === Print === */
+/* ============================================================================
+   PRINT
+   ============================================================================ */
 @media print {
   nav,
   footer,

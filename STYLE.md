@@ -58,57 +58,19 @@ brengel.com is spare. The beauty, if any, comes from the content and the clarity
 
 ## CSS Approach
 
-Use [Pico CSS](https://picocss.com/) as a classless foundation, or write a minimal custom stylesheet. The constraint: **no build step for CSS.** One file, hand-written, served directly.
+The site uses a standalone stylesheet (`assets/css/site.css`) built from the
+Talking Rock design system token source. The token reference is:
 
-If using Pico:
-```html
-<link rel="stylesheet" href="/css/pico.min.css">
-<link rel="stylesheet" href="/css/site.css"> <!-- overrides only -->
-```
+  ~/dev/Talking Rock Design System/colors_and_type.css
 
-If writing custom:
-```html
-<link rel="stylesheet" href="/css/style.css"> <!-- everything in one file -->
-```
+Copy tokens into `site.css` when the design system updates — do not link
+to the skill folder at runtime. One file, no build step, served directly.
 
-### Color Palette
+Theme default is Dusk & Stone (dark). High Desert light tokens are applied
+via `@media (prefers-color-scheme: light)`. See `colors_and_type.css` for
+the full token set and pairing guidance.
 
-Intentionally limited. Two text colors, one accent, one background.
-
-```css
-:root {
-  --text: #1a1a1a;
-  --text-muted: #666;
-  --accent: #2563eb;      /* Links, interactive elements */
-  --bg: #fafafa;
-  --surface: #fff;        /* Cards, content areas */
-  --border: #e5e5e5;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --text: #e5e5e5;
-    --text-muted: #999;
-    --accent: #60a5fa;
-    --bg: #111;
-    --surface: #1a1a1a;
-    --border: #333;
-  }
-}
-```
-
-### Spacing Scale
-
-Consistent spacing using a simple scale:
-
-```css
-/* Base unit: 0.5rem (8px) */
---space-1: 0.5rem;   /*  8px - tight  */
---space-2: 1rem;     /* 16px - default */
---space-3: 1.5rem;   /* 24px - section */
---space-4: 2rem;     /* 32px - major  */
---space-6: 3rem;     /* 48px - page   */
-```
+No Pico CSS. No CDN. No external font loading.
 
 ---
 
